@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+	<div id="example"></div>
+	<p id="demo"></p>
+	<button type="button" id="btn" onclick="alert(this.type)">点击</button>
+	<form method="post" id="myForm">
+		<ul>
+			<li type="radio" name="color" value="red">Red</li>
+			<li type="radio" name="color" value="green">Green</li>
+			<li type="radio" name="color" value="blue">Blue</li>
+		</ul>
+	</form>
+	<script>
+	txt = "<p>浏览器代号: " + navigator.appCodeName + "</p>";
+	txt+= "<p>浏览器名称: " + navigator.appName + "</p>";
+	txt+= "<p>浏览器版本: " + navigator.appVersion + "</p>";
+	txt+= "<p>启用Cookies: " + navigator.cookieEnabled + "</p>";
+	txt+= "<p>硬件平台: " + navigator.platform + "</p>";
+	txt+= "<p>用户代理: " + navigator.userAgent + "</p>";
+	txt+= "<p>用户代理语言: " + navigator.systemLanguage + "</p>";
+	document.getElementById("example").innerHTML=txt;
+
+	// var person = {};
+	// Object.defineProperty(person, 'name', {
+	// 	configurable:false,
+	// 	writable:false,
+	// 	enumerable:true,
+	// 	value:'junjie'
+	// });
+	// document.getElementById('demo').innerHTML=person.name;
+	// alert(10 >> 1);
+
+	// function dog(){};
+	// dog.prototype.z = 3;
+	// var obj = new dog();
+	// obj.z = 5;
+	// delete obj.z;
+	// var obj2 = Object.create({x:1});
+	// console.log(obj2.x)
+	// var car = {x:1,y:2};
+	// console.log(car.toString())
+
+	// var o = {f:function(a,b){return this.a + this.b;}}
+	// var p = Object.create(o);
+	// p.a = 1;
+	// p.b = 4;
+	// alert(p.f());
+	// function f() {
+	// 	this.a = 1;
+	// 	return this.b;
+	// }
+	// var func = f.bind({b:4});
+	// alert(func())
+
+	// function compare(value1, value2) {
+	// 	if (value1 < value2) {
+	// 		return -1;
+	// 	} else if (value1 > value2){
+	// 		return 1;
+	// 	} else {
+	// 		return 0;
+	// 	}
+	// }
+
+	// 	var arr = [1,2,3,4,5,6];
+	// 	var everyArr = arr.every(function(item, index, arr) {
+	// 		return (item > 2);
+	// 	});
+
+	// 	var filterArr = arr.filter(function(item, index, arr) {
+	// 		return (item) > 2;
+	// 	});
+
+	// 	var mapArr = arr.map(function(item, index, arr) {
+	// 		return item * 2;
+	// 	});
+
+	// 	var reduceArr = arr.reduce(function(prev, cur, index, arr) {
+	// 		return prev + cur;
+	// 	});
+
+	// 	var reduceArr = arr.reduceRight(function(prev, cur, index, arr) {
+	// 		return prev + cur;
+	// 	});
+
+	// 	var now = new Date();
+
+	// 	var someDay = new Date(Date.parse("May 1, 1998"));
+
+	// function createComparisonFunction(prototypeName) {
+	// 	return function(object1, object2) {
+	// 		var value1 = object1[prototypeName];
+	// 		var value2 = object2[prototypeName];
+
+	// 		if (value1 < value2) {
+	// 			return -1;
+	// 		} else if (value1 > value2) {
+	// 			return 1;
+	// 		} else {
+	// 			return 0;
+	// 		}
+	// 	};
+	// }
+	// var data = [{name: "Zachary", age: 28}, {name: "Nicholas", age: 29}];
+	// data.sort(createComparisonFunction("name"));
+	// alert(data[0].name); //Nicholas
+	// data.sort(createComparisonFunction("age"));
+	// alert(data[0].name); //Zachary
+
+	// var x = 10;
+	// alert(x.toFixed(2)) //parameter 几位小数
+	// alert(x.toExponential(1)) //parameter 后面几个*10
+	// alert(x.toPrecision(2)) //parameter 几位有效数字
+
+
+	// function Person(name, age) {
+	// 	this.name = name;
+	// 	this.age = age;
+	// }
+
+	// Person.prototype.hi = function() {
+	// 	console.log('Hi, my name is' + this.name + ',my age is' + this.age);
+	// }
+
+	// Person.prototype.LEGS_NUM = 2;
+	// Person.prototype.ARMS_NUM = 2;
+	// Person.prototype.walk = function() {
+	// 	console.log(this.name + ' is walking');
+	// }
+
+	// function Student(name, age, className) {
+	// 	Person.call(this, name, age);
+	// 	this.className = className;
+	// }
+
+	// Student.prototype = Object.create(Person.prototype);
+	// Student.prototype.constructor = Student;
+
+	// Student.prototype.hi = function() {
+	// 	console.log('Hi, my name is ' + this.name + ',my age is ' + this.age
+	// 		+ " years old now from " + this.className);
+	// }
+
+	// Student.prototype.learn = function (subject) {
+	// 	console.log(this.name + ' is learing ' + subject + 'at' + this.className);
+	// }
+
+	// var bosn = new Student('Bosn', 27, 'class 3, Grade 2');
+	// bosn.hi();
+	// bosn.LEGS_NUM;
+	// bosn.walk();
+	// bosn.learn('math');
+	// Object.defineProperty(bosn,"add",{
+	// 	writable:true,
+	// 	value:"what"
+	// });
+	// delete bosn.add;
+	// alert(bosn.add);
+
+	// function createAnimal(name, age, weight) {
+	// 	var o = new Object();
+	// 	o.name = name;
+	// 	o.age = age;
+	// 	o.weight = weight;
+	// 	o.say = function() {
+	// 		alert('Hi my name is ' + o.name)
+	// 	}
+	// 	return o;
+	//}
+
+	//var dog = new createAnimal('dog','man','20');
+	//console.log(dog.say());
+
+	// function Plant(name, age, sex) {
+	// 	this.name = name;
+	// 	this.age = age;
+
+	// 	this.sex = sex;
+	// 	this.hello = function() {
+	// 		console.log('hello');
+	// 	}
+	// }
+
+	// var plant1 = new Plant('tree', '66', 'femal');
+	// plant1.hello();
+
+	// alert(typeof plant1);
+
+	// Plant('tomato', '33', 'man');
+	// window.hello();
+
+	// var o = new Object();
+	// Plant.call(o, 'tree', '66', 'femel');
+	// o.hello();
+	// var urlSecret = encodeURIComponent('https://www.google.com');
+	// console.log(urlSecret);
+	// var o = new Object();
+
+
+	// 寄生构造函数模式
+	// function SpecialArray() {
+	// 	var value = new Array();
+	// 	value.push.apply(value, arguments);
+	// 	value.toPipedString = function() {
+	// 		return this.join('|')
+	// 	};
+	// 	return value;
+	// }
+
+	// var color = new SpecialArray('red', 'blue', 'green');
+	// alert(color.toPipedString());
+
+	//组合继承
+	// function SuperType(name){
+	// 	this.name = name;
+	// 	this.color = ['red', 'green', 'blue'];
+	// }
+
+	// SuperType.prototype.sayName = function() {
+	// 	console.log(this.name);
+	// }
+
+	// function SubType(name, age) {
+	// 	SuperType.call(this, name);
+	// 	this.age = age;
+	// }
+
+	//组合继承
+	// SubType.prototype = new SuperType();
+	// SubType.prototype.constructor = SubType;
+
+	//寄生组合继承
+	// function inheritPrototype(subType, superType) {
+	// 	var prototype = Object.create(superType);
+	// 	prototype.constructor = subType;
+	// 	subType.prototype = prototype;
+	// }
+	//inheritPrototype(SubType, SuperType);
+
+	// SubType.prototype.sayAge = function() {
+	// 	console.log(this.age);
+	// }
+
+	// var instance1 = new SubType('alex',18);
+	// instance1.sayName();
+	// alert(instance1.color);
+	
+
+	// function factorial(num) {
+	// 	if (num <= 1) {
+	// 		return 1;
+	// 	} else {
+	// 		return num * factorial(num - 1);
+	// 		//解决factorial被置为null的问题
+	// 		//return num * arguments.callee(num - 1);
+
+	// 	}
+	// }
+
+
+	//严格模式下解决factorial被置为null
+	// var factorial = (function f(){
+	// 	if (num <= 1) {
+	// 		return 1;
+	// 	} else {
+	// 		return num * f(num - 1);
+	// 	}
+	// });
+	
+	// function createFunction() {
+	// 	var result = new Array(10);
+	// 	for(var i = 0; i < 10; i++) {
+	// 		result = function(num) {
+	// 			return function() {
+	// 				return num;
+	// 			}
+	// 		}(i);
+	// 	}
+	// 	return result;
+	// }
+
+	// (function() {
+	// 	var name = '';
+
+	// 	Person = function(value) {
+	// 		name = value;
+	// 	};
+
+	// 	Person.prototype.getName = function() {
+	// 		return name;
+	// 	};
+
+	// 	Person.prototype.setName = function(value) {
+	// 		name = value;
+	// 	};
+	// })();
+
+	// var person1 = new Person('junjie');
+	// console.log(person1.getName())
+	// var person2 = new Person('junjie');
+	// console.log(person2.getName());
+	
+
+	// var application = function() {
+
+	// 	//私有变量和函数
+	// 	var components = new Array();
+
+	// 	//初始化
+	// 	components.push(new BaseComponents());
+
+	// 	//公共
+	// 	return {
+	// 		getComponentsCount : function() {
+	// 			return components.length;
+	// 		},
+
+	// 		registerComponent : function(component) {
+	// 			if (typeof component == 'objecr') {
+	// 				components.push(component);
+	// 			}
+	// 		}
+	// 	};
+	// }();
+
+	// var singleton = function(){
+	// //私有变量和私有函数
+	// 	var privateVariable = 10;
+	// 	function privateFunction(){
+	// 		return false;
+	// 	}
+	// 	//创建对象
+	// 	var object = new CustomType();
+	// 	//添加特权/公有属性和方法
+	// 	object.publicProperty = true;
+	// 	object.publicMethod = function(){
+	// 		privateVariable++;
+	// 		return privateFunction();
+	// 	};
+	// 	//返回这个对象
+	// 	return object;
+	// }();
+
+	/* var application = function() {
+		var components = new Array();
+		components.push(new BaseComponent());
+		var app = new BaseComponent();
+		app.getComponentCount = function() {
+			return components.length;
+		};
+		app.registerComponent = function(component){
+			if (typeof component == "object"){
+			components.push(component);
+			}
+		};
+		return app;
+	}(); */
+
+	// function deepCopy(obj) {
+
+	// }
+
+	//深拷贝
+	/* function deepCopy(obj = {}) {
+		if(typeof obj !== 'object' || obj == null) {
+			return obj;
+		}
+
+		let result;
+		if(obj instanceof Array) { 
+			result = [];
+		} else {
+			result = {};
+		}
+
+		for(let key in obj) {
+			if(obj.hasOwnProperty(key)) {
+				result[key] = deepCopy(obj[key]);
+			}
+		}
+		return result;
+	} */
+
+	// list = [1,2,[1,2,3]];
+	// copy_list = deepCopy(list);
+	// console.log(copy_list)
+
+	// console.log(window.innerHeight,innerWidth);
+	// console.log(document.documentElement.clientHeight);
+
+	// var leftPos = (typeof window.screenLeft == 'number')?window.screenLeft:window.screenX;
+	// console.log(leftPos);
+
+	/* var wroxWin = window.open("http://www.baidu.com/","wroxWindow",
+		"height=400,width=400,top=10,left=10,resizable=yes");
+	//调整大小
+	wroxWin.resizeTo(500,500);
+	//移动位置
+	wroxWin.moveTo(100,100);
+	wroxWin.close(); */
+    
+
+	// setTimeout(function() {
+	// 	alert("Hello world!");
+	// }, 1000);
+	
+
+	// setInterval(function(){
+	// 	alert('aaa')
+	// },1000);
+
+
+	// if (confirm("Are you sure?")) {
+	// 	alert("I'm so glad you're sure! ");
+	// } else {
+	// 	alert("I'm sorry to hear you're not sure. ");
+	// }
+
+	// var result = prompt("What is your name? ", "");
+	// if (result !== null) {
+	// 	alert("Welcome, " + result);
+	// }
+
+	//window.find();
+
+	
+
+
+	// function getQueryStringArgs(){
+	// 	//取得查询字符串并去掉开头的问号
+	// 	var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+	// 	//保存数据的对象
+	// 	args = {},
+	// 	//取得每一项
+	// 	items = qs.length ? qs.split("&") : [],
+	// 	item = null,
+	// 	name = null,
+	// 	value = null,
+	// 	//在 for 循环中使用
+	// 	i = 0,
+	// 	len = items.length;
+	// 	//逐个将每一项添加到 args 对象中
+	// 	for (i=0; i < len; i++){
+	// 		item = items[i].split("=");
+	// 		name = decodeURIComponent(item[0]);
+	// 		value = decodeURIComponent(item[1]);
+	// 		if (name.length) {
+	// 			args[name] = value;
+	// 		}
+	// 	}
+	// 	return args;
+	// }
+
+	//用户字符串检测完整代码
+/* 	var client = function() {
+		
+		//呈现引擎
+		var engine = {
+			ie: 0,
+			gecko: 0,
+			webkit: 0,
+			khtml: 0,
+			opera: 0,
+
+			//完整的版本号
+			ver: null
+		};
+
+		//浏览器
+		var browser = {
+
+			//主要浏览器
+			ie: 0,
+			firefox: 0,
+			safari: 0,
+			chrome: 0,
+			opera: 0,
+			konq: 0,
+
+			//完整的版本号
+			ver: null
+		};
+
+		//平台、设备和操作系统
+		var system = {
+			win:false,
+			mac:false,
+			x11:false,
+
+			//移动设备
+			iphone:false,
+			ipod:false,
+			ipad:false,
+			ios:false,
+			android:false,
+			nokiaN:false,
+			wniMobile:false,
+
+			//游戏系统
+			wii:false,
+			ps:false
+		};
+
+		//检测呈现化引擎和浏览器
+		var ua = navigator.userAgent;
+		if(window.opera) {
+			engine.ver = browser.ver = window.opera.version();
+			engine.opera = browser.opera = parseFloat(engine.ver)
+		} else if(/AppleWebkit\/(\S+)/.test(ua)) { 
+			engine.ver = RegExp['$1'];
+			engine.webkit = parseFloat(engine.ver);
+
+
+
+			//进一步确认Chrome和Safari
+			if(/Chrome\/(\S+))/.test(ua)) {
+				browser.ver = RegExp['$1'];
+				browser.chrome = parseFloat(browser.ver);
+			} else if(/Version\/(\S+)/.test(ua)) {
+				browser.ver = RegExp['$1'];
+				browser.safari = parseFloat(browser.ver);
+			} else {
+				//近似确认版本号
+				var safariVersion = 1;
+				if(engine.webkit < 100) {
+					safariVersion = 1;
+				} else if(engine.webkit < 312) {
+					safariVersion = 1.2;
+				} else if(engine.webkit < 412) {
+					safariVersion = 1.3;
+				} else {
+					safariVersion = 2;
+				}
+				browser.safair = browser.ver = safariVersion;
+			}
+		} else if(/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
+			engine.ver = browser.ver = RegExp['$1'];
+			engine.khtml = browser.konq = parseFloat(engine.ver);
+		} else if(/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
+			engine.ver = RegExp['$1'];
+			engine.gecko = parseFloat(engine.ver);
+
+			//确认是不是Firefox
+			if(/Firefox\/(\S+)/.test(ua)) {
+				browser.ver = RegExp['$1'];
+				browser.firefox = parseFloat(browser.ver);
+			}
+		} else if(/MSIE ([^;]+)/.test(ua)) {
+			engine.ver = browser.ver = RegExp['$1'];
+			engine.ie = browser.ie = parseFloat(engine.ver);
+		}
+
+		//检测浏览器
+		browser.ie = engine.ie;
+		browser.opera = engine.opera;
+
+		//检测平台
+		var p = navigator.platform;
+		system.win = p.indexOf('win') == 0;
+		system.mac = p.indexOf('mac') == 0;
+		system.x11 = (p == 'x11') || (p.indexOf('Linux') == 0);
+
+		//检测Windows操作系统
+		if(system.win) {
+			if(/Win(?:dows )?([^do]{2}\s?(\d+\.\d+)?/.test(ua)) {
+				if(RegExp['$1'] == 'NT') {
+					switch(RegExp['$2']) {
+						case '5.0':
+							system.win = '2000';
+							break;
+						case '5.1':
+							system.win = 'XP';
+							break;
+						case '6.0':
+							system.ein = 'Vista';
+							break;
+						case '6.1':
+							system.win = '7'; 
+							break;
+						default:
+							system.win = 'NT';
+							break;
+					}
+				}else if(RegExp['$1'] == '9x') {
+					system.win = 'ME';
+				}else {
+					system.win = RegExp['$1'];
+				}
+			}
+		}
+
+		//移动设备
+		system.iphone = ua.indexOf('iPhone') > -1;
+		system.ipod = ua.indexOf('iPod') > -1;
+		system.ipad = ua.indexOf('iPad') > -1;
+		system.nokiaN = ua.indexOf('NokiaN') > -1;
+
+		//windows mobile
+		if(system.win == 'CE') {
+			system.wniMobile = system.win;
+		} else if (system.win == 'Ph') {
+			if(/Windows Phone OS(\d+.\d+)/.test(ua)) {
+				system.win = 'Phone';
+				system.wniMobile = parseFloat(RegExp['$1']);
+			}
+		}
+
+		//检测ios版本
+		if(system.mac && ua.indexOf('Mobile') > -1) {
+			if(/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)) {
+				system.ios = parseFloat(RegExp.$1.replace('_','.'));
+			} else {
+				system.ios = 2; //不能真正检测出来，所以只能猜猜
+			}
+		}
+
+		//检测Android版本
+		if(/Android (\d+\.\d+)/.test(ua)) {
+			system.android = parseFloat(RegExp.$1);
+		}
+
+		//返回这些对象
+		return {
+			engine: engine,
+			browser: browser,
+			system: system
+		};
+ 	}(); */
+	var EventUtil = {
+		addHandler: function(element, type, handler) {
+			if(element.addEventListener) {
+				element.addEventListener(type, handler, false);
+			} else if(element.attachEvent) {
+				element.addachEvent('on' + type, handler);
+			}else {
+				element['on' + type] = handler;
+			}
+		},
+		removeHandler: function(element, type, handler) {
+			if(element.removeEventListener) {
+				element.removeEventListener(type, handler, false);
+			} else if(element.detachEvent) {
+				element.detachEvent('on' + type ,handler);
+			} else {
+				element['on' + type] = null;
+			}
+		}
+	};
+
+	var btn = document.getElementById('btn');
+	// var handler = function(){
+	// 	alert('ALert');
+	// }
+	// EventUtil.addHandler(btn, 'click', handler);
+	btn.onclick = function(){
+		alert(event.type);
+	};
+
+
+	
+</script>
+
+
+
+</body>
+</html>

@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .txt {
+            height: 120px;
+            overflow: hidden;
+            line-height: 24px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="txt" style="line-height: 30px;">我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本是文本我是文本我是文本我是文本</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    var rowNum=Math.round($('.txt').height() / parseFloat($('.txt').css('line-height')))
+    if(rowNum > 3) {
+        let text = $('.txt')[0].innerHTML
+        
+    }
+</script>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text {
+            line-height: 20px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class='demo'>
+        <div class="text">这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本这是一段很长的文本</div>
+    </div>
+    <script>
+        debugger
+        const lineHeight = 20;
+        const fontSize = 15
+        let text =  document.getElementsByClassName('text')[0]
+        // 显示文本高度
+        let height = text.offsetHeight
+        // 显示文本宽度
+        let width = text.offsetWidth
+        // 一行显示的字数
+        let num = Math.floor( width / 15 )
+        // 三行显示的字数
+        if(text.innerHTML.length > lineHeight * 3){
+            text.innerHTML.substring(0, num*3 - 1) + '...'
+        }
+        console.log(height)
+    </script>
+</body>
+</html>

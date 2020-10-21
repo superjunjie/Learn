@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .text-hide{
+            width: 250px;
+            font-size: 16px;
+            color: #666;
+            border: 1px solid #ccc;
+            line-height: 24px;
+        }
+        .check-more{
+            margin-left: 5px;
+            font-size: 14px;
+            color: red;
+            cursor: pointer;
+        }
+        .click-show{
+            width: 250px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            color: #666;
+            line-height: 24px;
+        }
+    </style>
+   
+</head>
+<body>
+    <div>
+        <p class="text-hide">一段文字,一段文字一段文字一段文字,一段文字一段文字一段文字,一段文字一段文字</p>
+        <!-- 写了个空的标签用来放置超出预定字符 要展示的效果 -->
+        <div class="click-show"></div>
+    </div>
+    <div>
+        <p class="text-hide">不同的位置处理字体的隐藏，操作多个</p>
+        <div class="click-show"></div>
+    </div>
+    <p class="text-hide">dfadfj</p>
+    <div class="click-show"></div>
+</body>
+<script>
+    var ps = document.querySelectorAll('.text-hide');
+    var divs = document.querySelectorAll('.click-show');
+    // 预定的字符串
+    var saveNum = 20;
+    for(var ins = 0; ins < ps.length; ins++){
+        ps[ins].index = ins;
+        var inner = ps[ins].innerHTML;
+        // 去空格两两之间只留有一个空格
+        var str = inner.split('');
+        for(var i = 0; i < str.length; i++){
+            if(str[i] == ' '){
+                str.splice(i,1);
+            }
+        }
+        // 去完空格之后的string
+        var newStr = str.join('')
+        var len = newStr.length;
+        // 大于保留的字符时显示查看更多或...
+        if(len >= saveNum){
+            divs[ins].innerHTML = newStr.slice(0,saveNum) + "<span class='check-more'>查看更多>></span>";
+            ps[ins].style.display = 'none';
+        }
+        // 如果有查看更多的话就可以点击显示当前被隐藏的信息了
+        if(document.querySelector('.check-more')){
+            var spans = document.querySelectorAll('.check-more');
+            for(var j = 0; j < spans.length; j++){
+                spans[j].index = j;
+                spans[j].onclick=function(){
+                    divs[this.index].style.display = 'none';
+                    ps[this.index].style.display = 'block';
+                }
+            }
+        }
+    }
+</script>
+</html>

@@ -14,8 +14,8 @@
 <body>
 <canvas id="myCanvas"></canvas>
 <script>
-    const width = document.getElementById("myCanvas").width = screen.availWidth;
-    const height = document.getElementById("myCanvas").height = screen.availHeight;
+    const width = document.getElementById("myCanvas").width = screen.width;
+    const height = document.getElementById("myCanvas").height = screen.height;
     const ctx = document.getElementById("myCanvas").getContext("2d");
     const arr = Array(Math.ceil(width / 10)).fill(0);
     const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");

@@ -1,0 +1,70 @@
+.container {
+    position: relative;
+    width: 200px;
+    height: 60px;
+    background: #ddd;
+}
+
+/* 1、使用border-left */
+.container {
+    border-left: 5px solid deeppink;
+}
+
+/* 2、使用伪元素 */
+.container::after {
+    content: "";
+    width: 5px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: deeppink;
+}
+
+/* 3、外box-shadow */
+.container {
+    box-shadow: -5px 0 0 0 deeppink;
+}
+
+/* 4、内box-shadow */
+.container {
+    box-shadow: inset 5px 0 0 0 deeppink;
+}
+
+/* 5、drop-shadow */
+.container {
+    filter: drop-shadow(-5px 0 0 deeppink);
+}
+
+/* 6、渐变linearGradient */
+.container {
+    background-image: linear-gradient(90deg, deeppink 0px, deeppink 5px, transparent 5px);
+}
+
+/* 7、轮廓outline */
+.container {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    outline: 5px solid deeppink;
+}
+.container::after {
+    position: absolute;
+    content: "";
+    top: -5px;
+    bottom: -5px;
+    right: -5px;
+    left: 0;
+    background: #ddd;
+}
+
+/* 8、滚动条 */
+.container {
+    width: 205px;
+    background: deeppink;
+    overflow-y: scroll;
+}
+.container::-webkit-scrollbar {
+    width: 200px;
+    background: #ddd;
+}

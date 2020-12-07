@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            width: 300px;
+            height: 300px;
+            background: #fff;
+            background-clip: padding-box;
+            border: 20px dashed #cccc99;
+        }
+        #main::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            bottom: -20px;
+            right: -20px;
+            background: #996699;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+</body>
+</html>

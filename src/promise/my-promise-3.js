@@ -32,7 +32,7 @@ function resolvePromise(promise2, x, resolve, reject) {
 }
 class Promise {
     constructor(executor) {
-        this.status = PENDING    
+        this.status = PENDING
         this.value = undefined
         this.reason = undefined
         this.onResolvedCallBacks = []
@@ -42,8 +42,8 @@ class Promise {
                 value.then(resolve, reject)
                 return
             }
-            if(this.status === PENDING) {   
-                this.value = value                
+            if(this.status === PENDING) {
+                this.value = value
                 this.status = RESOLVED
                 this.onResolvedCallBacks.forEach(fn => fn())
             }
@@ -151,11 +151,5 @@ Promise.all = (promises) => {
                 reject(err)
             }))
         }
-    })
-}
-
-Promise.race = (promises) =>{
-    return new Promise((resolve, reject) => {
-        promises.forEach(promise => promise.then(resolve, reject))
     })
 }

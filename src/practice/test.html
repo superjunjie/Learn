@@ -249,7 +249,7 @@
 	// var instance1 = new SubType('alex',18);
 	// instance1.sayName();
 	// alert(instance1.color);
-	
+
 
 	// function factorial(num) {
 	// 	if (num <= 1) {
@@ -271,7 +271,7 @@
 	// 		return num * f(num - 1);
 	// 	}
 	// });
-	
+
 	// function createFunction() {
 	// 	var result = new Array(10);
 	// 	for(var i = 0; i < 10; i++) {
@@ -304,7 +304,7 @@
 	// console.log(person1.getName())
 	// var person2 = new Person('junjie');
 	// console.log(person2.getName());
-	
+
 
 	// var application = function() {
 
@@ -372,7 +372,7 @@
 		}
 
 		let result;
-		if(obj instanceof Array) { 
+		if(obj instanceof Array) {
 			result = [];
 		} else {
 			result = {};
@@ -403,12 +403,12 @@
 	//移动位置
 	wroxWin.moveTo(100,100);
 	wroxWin.close(); */
-    
+
 
 	// setTimeout(function() {
 	// 	alert("Hello world!");
 	// }, 1000);
-	
+
 
 	// setInterval(function(){
 	// 	alert('aaa')
@@ -428,7 +428,7 @@
 
 	//window.find();
 
-	
+
 
 
 	// function getQueryStringArgs(){
@@ -458,7 +458,7 @@
 
 	//用户字符串检测完整代码
 /* 	var client = function() {
-		
+
 		//呈现引擎
 		var engine = {
 			ie: 0,
@@ -511,7 +511,7 @@
 		if(window.opera) {
 			engine.ver = browser.ver = window.opera.version();
 			engine.opera = browser.opera = parseFloat(engine.ver)
-		} else if(/AppleWebkit\/(\S+)/.test(ua)) { 
+		} else if(/AppleWebkit\/(\S+)/.test(ua)) {
 			engine.ver = RegExp['$1'];
 			engine.webkit = parseFloat(engine.ver);
 
@@ -580,7 +580,7 @@
 							system.ein = 'Vista';
 							break;
 						case '6.1':
-							system.win = '7'; 
+							system.win = '7';
 							break;
 						default:
 							system.win = 'NT';
@@ -657,12 +657,12 @@
 	// 	alert('ALert');
 	// }
 	// EventUtil.addHandler(btn, 'click', handler);
-	btn.onclick = function(){
+	btn.onclick = function(event){
 		alert(event.type);
 	};
 
 
-	
+
 </script>
 
 

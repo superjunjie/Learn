@@ -5,8 +5,3 @@ function partial(fn) {
         return fn.apply(this, newArgs)
     }
 }
-try {
-    
-} catch (e) {
-    this.message.error(e.msg || '网络开小差了，请稍后再试')
-}

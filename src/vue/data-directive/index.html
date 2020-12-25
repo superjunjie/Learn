@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        class Dep {
+            constructor() {
+                this.subs = []
+            }
+            addSub(sub) {
+                this.subs.push(sub)
+            }
+            removeSub(sub) {
+                remove(this.subs, sub)
+            }
+            depend() {
+                if(Dep.target) {
+                    Dep.target.addDep(this)
+                }
+            }
+            notify() {
+                const subs = this.subs.slice()
+                for (let i = 0, l = subs.length; i < l; i++) {
+                    subs[i].update()
+                }
+            }
+        }
+        Dep.target = null
+        function defineReactive (obj,key,val) {
+            const dep = new Dep()
+
+            Object.defineProperty(obj,key,{
+                enumerable: true,
+                configurable: true,
+                get: function () {
+                    if(Dep.target){
+                        dep.depend()
+                    }
+                    return val
+                },
+                set: function (newVal) {
+                    if(newVal === val || (newVal !== newVal && val !== val)){
+                        return
+                    }
+                    val = newVal
+                    dep.notify()
+                }
+            })
+        }
+        const obj = {}//这一句是不是感觉很熟悉  就相当于初始化vue的data ---- data:{obj:{}};
+
+        //低配的不能再低配的watcher对象（源码中是一个类，我这用一个对象代替了）
+        const watcher = {
+            addDep:function (dep) {
+                dep.addSub(this)
+            },
+            update:function(){
+                html()
+            }
+        }
+        //假装这个是渲染页面的
+        function html () {
+            document.querySelector('body').innerHTML = obj.html
+        }
+        defineReactive(obj,'html','how are you') //定义响应式的数据
+
+        Dep.target = watcher
+        html() //第一次渲染界面
+        Dep.target = null
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style>
+        .progress3 {
+            height: 20px;
+            width: 300px;
+            -webkit-appearance: none;
+            display: block;
+        }
+        .progress3::-webkit-progress-value {
+            background: linear-gradient(
+                    -45deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, .1) 33%,
+                    rgba(0,0, 0, .1) 66%,
+                    transparent 66%
+            ),
+            linear-gradient(
+                    to top,
+                    rgba(255, 255, 255, .25),
+                    rgba(0, 0, 0, .25)
+            ),
+            linear-gradient(
+                    to left,
+                    #09c,
+                    #f44);
+            border-radius: 2px;
+            background-size: 35px 20px, 100% 100%, 100% 100%;
+        }
+        .btn {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <progress id="progress3" class="progress3" max="100" value="0"></progress>
+    <button id="btn" class="btn">点我一下嘛～</button>
+    <script>
+        'use strict';
+        let startTimestamp = (new Date()).getTime();
+        let currentPercentage = 0;
+        let maxPercentage = 100;
+        let countDelay = 100;
+        let timer = null;
+        let start = false;
+        const percentageChange = () => {
+            const currentTimestamp = (new Date()).getTime();
+            if (currentTimestamp - startTimestamp >= countDelay) {
+                currentPercentage++;
+                startTimestamp = (new Date()).getTime();
+                progress3.setAttribute('value', currentPercentage);
+            };
+            if (currentPercentage < maxPercentage) {
+                timer = window.requestAnimationFrame(percentageChange);
+            } else {
+                window.cancelAnimationFrame(timer);
+            };
+        };
+        const clickHander = () => {
+            if (!start) {
+                start = true;
+                percentageChange();
+            };
+        };
+        btn.addEventListener('click', clickHander);
+    </script>
+</body>
+</html>

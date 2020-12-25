@@ -115,9 +115,6 @@ class Promise {
         return this.then(null, errCalBack)
     }
 }
-Promise.catch = (errCalBack) => {
-    return this.then(null, errCalBack)
-}
 Promise.resolve = (value) => {
     return new Promise((resolve, reject) => {
         resolve(value)

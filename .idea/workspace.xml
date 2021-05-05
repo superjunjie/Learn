@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aaa1026-1979-4ba0-b3fb-3ce26599dd24" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/1018.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/1021.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/1128.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/1319.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/1584.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/628.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/674.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/721.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/955.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/leetcode/989.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/animation/3dlabel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/animation/3dlabel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +23,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1lRdOuez2qWKjpEhXdQSE4dWHzS" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,8 +43,11 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../junjie/youxin-electron-vue" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.15.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.20.10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -58,29 +60,29 @@
       <recent name="D:\yanjunjie\Learn\src\promise" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.080.js">
+  <component name="RunManager" selected="Node.js.02.js">
+    <configuration name="01.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/01.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
+      <method v="2" />
+    </configuration>
     <configuration name="026.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/fast_slow_point/026.js" working-dir="$PROJECT_DIR$/src/practice/leetcode/fast_slow_point">
+      <method v="2" />
+    </configuration>
+    <configuration name="02.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/02.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
       <method v="2" />
     </configuration>
     <configuration name="080.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/fast_slow_point/080.js" working-dir="$PROJECT_DIR$/src/practice/leetcode/fast_slow_point">
       <method v="2" />
     </configuration>
-    <configuration name="1128.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/1128.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
-      <method v="2" />
-    </configuration>
-    <configuration name="1319.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/1319.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
-      <method v="2" />
-    </configuration>
-    <configuration name="674.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/674.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
+    <configuration name="1018.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/practice/leetcode/1018.js" working-dir="$PROJECT_DIR$/src/practice/leetcode">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.02.js" />
+        <item itemvalue="Node.js.01.js" />
+        <item itemvalue="Node.js.1018.js" />
         <item itemvalue="Node.js.080.js" />
         <item itemvalue="Node.js.026.js" />
-        <item itemvalue="Node.js.1128.js" />
-        <item itemvalue="Node.js.674.js" />
-        <item itemvalue="Node.js.1319.js" />
       </list>
     </recent_temporary>
   </component>
@@ -102,6 +104,7 @@
       <workItem from="1610508956439" duration="6165000" />
       <workItem from="1610674511754" duration="1567000" />
       <workItem from="1610969581089" duration="46341000" />
+      <workItem from="1618797096968" duration="1350000" />
     </task>
     <servers />
   </component>
@@ -119,17 +122,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/practice/leetcode/1018.js</url>
-          <line>6</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

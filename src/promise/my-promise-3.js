@@ -143,10 +143,38 @@ Promise.all = (promises) => {
         }
         for(let i = 0; i < len; i++) {
             Promise.resolve(promises[i].then(data => {
-                handleData(data, index)
+                handleData(data, i)
             }).catch(err => {
                 reject(err)
             }))
         }
     })
 }
+
+Promise.race = function(promises) {
+    return new Promise((resolve, reject) => {
+      let len = promises.length;
+      if(len === 0) return;
+      for(let i = 0; i < len; i++) {
+        Promise.resolve(promise[i]).then(data => {
+          resolve(data);
+          return;
+        }).catch(err => {
+          reject(err);
+          return;
+        })
+      }
+    })
+  }
+
+  Promise.prototype.finally = function(callback) {
+    this.then(value => {
+      return Promise.resolve(callback()).then(() => {
+        return value;
+      });
+    }, error => {
+      return Promise.resolve(callback()).then(() => {
+        throw error;
+      });
+    });
+  }

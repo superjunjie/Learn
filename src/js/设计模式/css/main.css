@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#my-canvas {
+    width: 400px;
+    border: 5px solid red;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-between;
+}

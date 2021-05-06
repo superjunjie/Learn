@@ -156,7 +156,7 @@ Promise.race = function(promises) {
       let len = promises.length;
       if(len === 0) return;
       for(let i = 0; i < len; i++) {
-        Promise.resolve(promise[i]).then(data => {
+        Promise.resolve(promises[i]).then(data => {
           resolve(data);
           return;
         }).catch(err => {
@@ -178,3 +178,48 @@ Promise.race = function(promises) {
       });
     });
   }
+
+// Test
+// const p = Promise.resolve('hello world')
+// p.then(val => {
+//     console.log(val)
+// })
+
+// Test all
+// const p1 = Promise.resolve('hello world')
+// const p2 = Promise.resolve('hello world')
+// const p3 = Promise.resolve('hello world')
+
+// const pa = Promise.all([p1, p2, p3])
+// pa.then(val => {
+//     console.log(val)
+// }).catch(e => {
+//     console.log(e)
+// })
+
+
+// Test race  ===>sucess
+// const p1 = Promise.resolve('hello world-1')
+// const p2 = Promise.resolve('hello world-2')
+// const p3 = Promise.resolve('hello world-3')
+
+// const pa = Promise.race([p1, p2, p3])
+// pa.then(val => {
+//     console.log(val)
+// }).catch(e => {
+//     console.log(e)
+// })
+
+// Test finally
+// const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         reject(1000)
+//     }, 1000);
+// })
+// promise.then(value => {
+//     console.log('resolved', value)
+// }).catch(e => {
+//     console.log('error', e)
+// }).finally(() => {
+//     console.log('finally')
+// })

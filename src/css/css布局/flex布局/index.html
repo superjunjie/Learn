@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+<div class="header" id="header">
+    <i class="close" id="close" onClick="cli()">x</i>
+</div>    
+<style>
+.header{
+    width:50%;
+    height:80px;
+    background:#000;
+}
+ 
+.close{
+    cursor:pointer;
+    color:#fff;
+    z-index:100;
+	float:left;
+    top:5px;
+    right:5px;
+    background:rgb(129, 117, 117);
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+	float:right;
+} 
+</style>  
+ 
+ 
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script>
+ 
+function cli(){
+		localStorage.setItem("isClosed","1");
+		document.getElementById("header").style.display = "none"};
+		
+function hide(){
+  if(localStorage.getItem("isClosed")){
+  	document.getElementById("header").style.display = "none";
+	}
+  }
+ 
+hide();
+</script> 
+</body>
+</html>

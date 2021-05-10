@@ -84,6 +84,7 @@ class Promise {
         onrejected = typeof onrejected === 'function' ? onrejected : e => { throw e}
         let promise2 = new Promise((resolve, reject) => {
             if(this.status === RESOLVED) {
+                // 使用微任务是因为then方法实现了延时绑定回调机制
                 queueMicrotask(() => {
                     try {
                         let x = onfilfulled(this.value) || this.value
@@ -193,14 +194,23 @@ Promise.race = function (values) {
  * 实际结果：实际结果 hello world-3 hello world-3 hello world-3
  * 结论：forEach问题，还没想出来原因
  */
+let count = 0
 const p1 = Promise.resolve('hello world-1')
 const p2 = Promise.resolve('hello world-2')
 const p3 = Promise.resolve('hello world-3')
 
 const pa = Promise.race([p1, p2, p3])
-debu
 pa.then(val => {
-    console.log(val)
+    count++
+    console.log(val + '---' + count)
 }).catch(e => {
     console.log(e)
 })
+
+
+
+/**
+ * 1.Promise中为什么要引入微任务？
+ * 2.Promise中是如何实现回调函数返回值穿透的？
+ * 3.Promise出错后，是怎么通过"冒泡"传递给那个捕获异常的函数？
+ */

@@ -186,16 +186,16 @@ Promise.race = function(promises) {
 // })
 
 // Test all
-// const p1 = Promise.resolve('hello world')
-// const p2 = Promise.resolve('hello world')
-// const p3 = Promise.resolve('hello world')
+const p1 = Promise.resolve('hello world-1')
+const p2 = Promise.reject('hello world-2')
+const p3 = Promise.resolve('hello world-3')
 
-// const pa = Promise.all([p1, p2, p3])
-// pa.then(val => {
-//     console.log(val)
-// }).catch(e => {
-//     console.log(e)
-// })
+const pa = Promise.all([p1, p2, p3])
+pa.then(val => {
+    console.log(val)
+}, e => {
+    console.log(e)
+})
 
 
 // Test race  ===>sucess

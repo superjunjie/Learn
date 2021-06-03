@@ -179,9 +179,11 @@ Promise.all = function(promises) {
     })
 }
 
-Promise.race = function (values) {
+Promise.race = function (promises) {
     return new Promise(function (resolve, reject) {
-        iterableToArray(values).forEach(function(value){
+        let len = promises.length 
+        if(len === 0) return
+        iterableToArray(promises).forEach(function(value){
             Promise.resolve(value).then(resolve, reject)
         })
     })
@@ -194,20 +196,30 @@ Promise.race = function (values) {
  * 实际结果：实际结果 hello world-3 hello world-3 hello world-3
  * 结论：forEach问题，还没想出来原因
  */
-let count = 0
-const p1 = Promise.resolve('hello world-1')
-const p2 = Promise.resolve('hello world-2')
-const p3 = Promise.resolve('hello world-3')
+// let count = 0
+// const p1 = Promise.resolve('hello world-1')
+// const p2 = Promise.resolve('hello world-2')
+// const p3 = Promise.resolve('hello world-3')
 
-const pa = Promise.race([p1, p2, p3])
+// const pa = Promise.race([p1, p2, p3])
+// pa.then(val => {
+//     count++
+//     console.log(val + '---' + count)
+// }).catch(e => {
+//     console.log(e)
+// })
+
+// Test all
+const p1 = Promise.resolve('hello world')
+const p2 = Promise.reject('hello world')
+const p3 = Promise.resolve('hello world')
+
+const pa = Promise.all([p1, p2, p3])
 pa.then(val => {
-    count++
-    console.log(val + '---' + count)
+    console.log(val)
 }).catch(e => {
     console.log(e)
 })
-
-
 
 /**
  * 1.Promise中为什么要引入微任务？

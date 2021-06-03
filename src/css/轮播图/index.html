@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 100%;
+            display: flex;
+        }
+        .content {
+            flex: 1;
+            border: 10px solid green;
+
+        }
+        .aside {
+            width: 300px;
+            border: 10px solid green;
+        }
+        .slide {
+            position: relative;
+            margin: auto;
+            width: 675px;
+            height: 235px;
+            overflow: hidden;
+        }
+        .slide ul{
+            margin: 10px 0;
+            padding: 0;
+            width: 9999px;
+            transition: all 0.5s;
+        }
+        
+        .slide .slide-auto {
+            animation: marginleft 10s infinite;
+        }
+
+        .slide li {
+            float: left;
+            width: 675px;
+            height: 235px;
+            list-style: none;
+        }
+        @keyframes marginleft {
+            0% {
+                margin-left: 0;
+            }
+            28.5% {
+                margin-left: 0;
+            }
+            33.3% {
+                margin-left: -675px;
+            }
+            62% {
+                margin-left: -675px;
+            }
+            66.7% {
+                margin-left: -1350px;
+            }
+            95.2% {
+                margin-left: -1350px;
+            }
+            100% {
+                margin-left: 0;
+            }
+        }
+        .aside {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .aside .quar {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .aside .yuan {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        #app {
+            border-top: 10px solid green;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="parent">
+        <div class="content">
+            <div class="slide">
+                <ul class="slide-auto">
+                    <li>
+                        one
+                        <image src="2.jpg"></image>
+                    </li>
+                    <li>
+                        two
+                        <image src="2.jpg"></image>
+                    </li>
+                    <li>
+                        three
+                        <image src="2.jpg"></image>
+                    </li>
+                </ul>
+            </div>
+            <div id="app">
+                <ul>
+                    <li v-for="(item,index) in itemList" :key=`${item}-${item.key}`>
+                        {{item.val}}
+                        <span @click="handleDel(index)">del</span>
+                        <span @click="handleUp(index)">up</span>
+                        <span @click="handleDown(index)">down</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="aside">
+            <div class="quar"></div>
+            <div class="yuan"></div>
+        </div>
+    </div>
+  
+   <script>
+       var app = new Vue({
+        el: '#app',
+        data: {
+            itemList: [
+                {
+                    key: 1,
+                    val: 'name1'
+                },
+                {
+                    key: 2,
+                    val: 'name2'
+                },
+                {
+                    key: 3,
+                    val: 'name3'
+                },
+                {
+                    key: 4,
+                    val: 'name4'
+                },
+                {
+                    key: 5,
+                    val: 'name5'
+                }
+            ]
+        },
+        methods: {
+            handleDel(index) {
+                this.itemList.splice(index, 1)
+            },
+            handleUp(index) {
+                if(index === 0) return
+                let temp = this.itemList[index]
+                this.itemList.splice(index, 1)
+                this.itemList.splice(index - 1, 0, temp)
+            },
+            handleDown(index) {
+                if(index === 4) return 
+                let temp = this.itemList[index]
+                this.itemList.splice(index, 1)
+                this.itemList.splice(index + 1, 0, temp)
+            }
+            
+        }
+       })
+   </script>
+</body>
+</html>

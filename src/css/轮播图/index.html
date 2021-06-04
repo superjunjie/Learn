@@ -21,7 +21,7 @@
         }
         .slide {
             position: relative;
-            margin: auto;
+            margin: 20px auto;
             width: 675px;
             height: 235px;
             overflow: hidden;
@@ -163,12 +163,11 @@
                 this.itemList.splice(index - 1, 0, temp)
             },
             handleDown(index) {
-                if(index === 4) return 
+                if(index === this.itemList.length) return 
                 let temp = this.itemList[index]
                 this.itemList.splice(index, 1)
                 this.itemList.splice(index + 1, 0, temp)
             }
-            
         }
        })
    </script>

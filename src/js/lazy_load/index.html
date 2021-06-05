@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懒加载</title>
+    <style>
+        .image-item {
+            display: block;
+            margin: 50px auto;
+            height: 540px;
+            width: 960px;
+	    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/1.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/3.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/4.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/5.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/6.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/7.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/8.jpg">
+        <img class="image-item" src="" lazyload="true" data-original="../../images/9.jpg">
+    </div>
+    <script>
+        let viewHeight = document.documentElement.clientHeight
+        function lazyload() {
+            let eles = document.querySelectorAll('img[data-original][lazyload]')
+            Array.prototype.forEach.call(eles, function(item, index){
+                console.log(item.dataset)
+                if(item.dataset.original === "") return
+                let rect = item.getBoundingClientRect()
+                if(rect.bottom >=0 && rect.top < viewHeight) {
+                    !function() {
+                        let img = new Image()
+                        img.src = item.dataset.original
+                        img.onload = function() {
+                            item.src = img.src
+                        }
+                        item.removeAttribute('data-original')
+                        item.removeAttribute('lazyload')
+                    }()
+                }
+            })
+        }
+        lazyload()
+        document.addEventListener('scroll', lazyload)
+    </script>
+</body>
+</html>

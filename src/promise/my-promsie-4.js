@@ -4,10 +4,10 @@ const REJECTED = 'REJECTED'
 var iterableToArray = function (iterable) {
     if (typeof Array.from === 'function') {
       // ES2015+, iterables exist
-      iterableToArray = Array.from;
-      return Array.from(iterable);
+        iterableToArray = Array.from;
+        return Array.from(iterable);
     }
-  
+
     // ES5, only arrays and array-likes exist
     iterableToArray = function (x) { return Array.prototype.slice.call(x); };
     return Array.prototype.slice.call(iterable);

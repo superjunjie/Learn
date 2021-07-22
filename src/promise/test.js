@@ -21,7 +21,7 @@
 // promise3.then((res) => {
 //     console.log(res)
 // })
-
+// Yanjunjie&19980929
 // Test all
 const p1 = Promise.resolve('hello world-1')
 const p2 = Promise.reject('hello world-2')

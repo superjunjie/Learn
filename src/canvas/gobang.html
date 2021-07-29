@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOBANG</title>
+    <style>
+        #canvas {
+            background: #e3cdb0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script>
+        function draw(ctx) {
+            for(let i = 0; i < 15; i++) {
+                ctx.beginPath()
+                ctx.moveTo(20, 20 + i * 40)
+                ctx.lineTo(580, 20 + i * 40)
+                ctx.stroke()
+                ctx.closePath()
+            }
+
+            for(let i = 0; i < 15; i++) {
+                ctx.beginPath()
+                ctx.moveTo(20 + i * 40, 20)
+                ctx.lineTo(20 + i * 40, 580)
+                ctx.stroke()
+                ctx.closePath()
+            }
+        }
+        function play() {
+            // get context
+            const canvas = document.getElementById('canvas')
+            const ctx = canvas.getContext('2d')
+            // draw
+            draw(ctx)
+
+            isBlack = true
+
+            let cheeks = []
+            for(let i = 0; i < 15; i++) {
+                cheeks[i] = new Array(15).fill(0)
+            }
+            canvas.onclick = function(e) {
+                const clientX = e.clientX
+                const clientY = e.clientY
+
+                const x = Math.round((clientX - 20) / 40)*40 + 20
+                const y = Math.round((clientY - 20) / 40)*40 + 20
+
+                const cheeksX = (x - 20) / 40
+                const cheeksY = (y - 20) / 40
+
+                if(cheeks[cheeksY][cheeksX]) return
+
+                cheeks[cheeksY][cheeksX] = isBlack ? 1 : 2
+
+                ctx.beginPath()
+                ctx.arc(x, y, 20, 0, 2 * Math.PI)
+                ctx.fillStyle = isBlack ? 'black' : 'white'
+                ctx.fill()
+                ctx.closePath()
+                isBlack = !isBlack
+            }
+        }
+        play()
+    </script>
+</body>
+</html>

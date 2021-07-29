@@ -28,6 +28,11 @@ class Compiler {
       })
     }
   }
+  compileText2(node, name, key, index) {
+    debugger
+    let regex = /\{\{(.+?)\}\}/
+
+  }
   compileElement(node) {
     ![...node.attributes].forEach(attr => {
       let attrName = attr.name
@@ -57,6 +62,29 @@ class Compiler {
     node.addEventListener('input', () => {
       this.vm[key] = node.value
     })
+  }
+  forUpdater(node, key, value) {
+    const parentNode = node.parentNode
+    const attrs = [...node.attributes]
+    const tagName = node.tagName
+    parentNode.removeChild(node)
+    const regex = /^for\s+([a-z]+)\s?[,]?\s?([a-z]+)?\s+in\s+([a-z]+)/
+    const res = regex.exec(key)
+    const a = res[1]
+    const b = res[2]
+    const c = res[3]
+    const valList = c ? this.vm[c] : []
+    let fragment = document.createDocumentFragment()
+    for(let i = 0; i < valList.length; i++) {
+      let node = document.createElement(tagName)
+      attrs.forEach(item => {
+        node.setAttribute(item.name, item.value)
+      })
+      this.compileText2(node, a, c, i)
+      fragment.appendChild(node)
+    }
+    
+
   }
   isDirective(attr) {
     return attr.startsWith('v-')

@@ -12,6 +12,9 @@
     age: {{age}} <br />
     <div v-text="msg"></div>
     <input v-model="msg" type="text" />
+    <ul>
+      <li v-for="for item, key in items" class="item">{{item.name}}</li>
+    </ul>
   </div>
   <script src="../js/dep.js"></script>
   <script src="../js/watcher.js"></script>
@@ -24,7 +27,21 @@
       data() {
         return {
           age: 21,
-          msg: 'yanjunjie'
+          msg: 'yanjunjie',
+          items: [
+            {
+              name: 'aaa',
+              age: 18
+            },
+            {
+              name: 'bbb',
+              age: 19
+            },
+            {
+              name: 'ccc',
+              age: 21
+            }
+          ]
         }
       }
     })

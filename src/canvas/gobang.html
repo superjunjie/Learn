@@ -56,9 +56,9 @@
                 const cheeksX = (x - 20) / 40
                 const cheeksY = (y - 20) / 40
 
-                if(cheeks[cheeksY][cheeksX]) return
+                if(cheeks[cheeksY][cheeksX] || gameOver) return
 
-                gameOver = checkWin(cheeks, isBlack, cheeksY, cheeksX)
+                gameOver = checkWin(cheeks, isBlack, cheeksX, cheeksY)
 
                 cheeks[cheeksY][cheeksX] = isBlack ? 1 : 2
 
@@ -68,9 +68,9 @@
                 ctx.fill()
                 ctx.closePath()
                 setTimeout(() => {
-                    if (checkWin(cheeks, isBlack, cheeksX, cheeksY)) {
+                    if(gameOver) { 
                         const con = confirm(`${isBlack ? '黑棋' : '白棋'}赢了！是否重新开局？`)
-                        ctx.clearRect(0, 0, 600, 600)
+                        con && ctx.clearRect(0, 0, 600, 600)
                         con && play()
                     }
                     isBlack = !isBlack

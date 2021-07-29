@@ -5,7 +5,7 @@ class Vue {
     // get el 
     this.$el = typeof options.el === 'string' ? document.querySelector(options.el) : options.el
     // get data
-    this.$data = options.data || {}
+    this.$data = this.getData(options.data)
     // call _proxyData handling attributes in data
     this._proxyData(this.$data)
     new Observer(this.$data)
@@ -25,5 +25,14 @@ class Vue {
         }
       })
     })
+  }
+  getData(data) {
+    if(typeof data === 'function') {
+      return data()
+    } else if (typeof data === 'object' && !Array.isArray(data)) {
+      return data
+    } else {
+      return {}
+    }
   }
 }

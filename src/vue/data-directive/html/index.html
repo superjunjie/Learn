@@ -8,8 +8,8 @@
 </head>
 <body>
   <div id="app">
-    {{msg}} <br />
-    {{age}} <br />
+    msg: {{msg}} <br />
+    age: {{age}} <br />
     <div v-text="msg"></div>
     <input v-model="msg" type="text" />
   </div>
@@ -21,10 +21,12 @@
   <script>
     let vm = new Vue({
       el: '#app',
-      data: {
-          msg: '123',
+      data() {
+        return {
           age: 21,
-      },
+          msg: 'yanjunjie'
+        }
+      }
     })
   </script>
 </body>  

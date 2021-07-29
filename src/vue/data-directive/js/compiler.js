@@ -34,6 +34,7 @@ class Compiler {
       if(this.isDirective(attrName)) {
           attrName = attrName.substr(2)
           let key = attr.value
+          node.removeAttribute(attr.name)
           this.update(node, key, attrName)
       }
     })

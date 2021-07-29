@@ -15,6 +15,7 @@
     <canvas id="canvas" width="600" height="600"></canvas>
     <script>
         function draw(ctx) {
+            ctx.fillText('AI五子棋', 280, 12.5)
             for(let i = 0; i < 15; i++) {
                 ctx.beginPath()
                 ctx.moveTo(20, 20 + i * 40)
@@ -39,6 +40,7 @@
             draw(ctx)
 
             isBlack = true
+            gameOver = false
 
             let cheeks = []
             for(let i = 0; i < 15; i++) {
@@ -56,6 +58,8 @@
 
                 if(cheeks[cheeksY][cheeksX]) return
 
+                gameOver = checkWin(cheeks, isBlack, cheeksY, cheeksX)
+
                 cheeks[cheeksY][cheeksX] = isBlack ? 1 : 2
 
                 ctx.beginPath()
@@ -63,8 +67,100 @@
                 ctx.fillStyle = isBlack ? 'black' : 'white'
                 ctx.fill()
                 ctx.closePath()
-                isBlack = !isBlack
+                setTimeout(() => {
+                    if (checkWin(cheeks, isBlack, cheeksX, cheeksY)) {
+                        const con = confirm(`${isBlack ? '黑棋' : '白棋'}赢了！是否重新开局？`)
+                        ctx.clearRect(0, 0, 600, 600)
+                        con && play()
+                    }
+                    isBlack = !isBlack
+                }, 0)
             }
+        }
+        function checkWin(cheeks, isBlack, x, y) {
+            const flag = isBlack ? 1 : 2
+
+            if (up_down(cheeks, x, y, flag)) {
+                return true
+            }
+
+            if (left_right(cheeks, x, y, flag)) {
+                return true
+            }
+            if (lu_rd(cheeks, x, y, flag)) {
+                return true
+            }
+
+            if (ru_ld(cheeks, x, y, flag)) {
+                return true
+            }
+
+            return false
+        }
+        function up_down(cheeks, x, y, flag) {
+            let num = 1
+            for (let i = 1; i < 5; i++) {
+                let tempY = y - i
+                console.log(x, tempY)
+                if (tempY < 0 || cheeks[tempY][x] !== flag) break
+                if (cheeks[tempY][x] === flag) num += 1
+            }
+            for (let i = 1; i < 5; i++) {
+                let tempY = y + i
+                console.log(x, tempY)
+                if (tempY > 14 || cheeks[tempY][x] !== flag) break
+                if (cheeks[tempY][x] === flag) num += 1
+            }
+            return num >= 5
+        }
+        function left_right(cheeks, x, y, flag) {
+            let num = 1
+            for (let i = 1; i < 5; i++) {
+                let tempX = x - i
+                if (tempX < 0 || cheeks[y][tempX] !== flag) break
+                if (cheeks[y][tempX] === flag) num += 1
+            }
+            for (let i = 1; i < 5; i++) {
+                let tempX = x + i
+                if (tempX > 14 || cheeks[y][tempX] !== flag) break
+                if (cheeks[y][tempX] === flag) num += 1
+            }
+            return num >= 5
+
+        }
+
+        function lu_rd(cheeks, x, y, flag) {
+            let num = 1
+            for (let i = 1; i < 5; i++) {
+                let tempX = x - i
+                let tempY = y - i
+                if (tempX < 0 || tempY < 0 || cheeks[tempY][tempX] !== flag) break
+                if (cheeks[tempY][tempX] === flag) num += 1
+            }
+            for (let i = 1; i < 5; i++) {
+                let tempX = x + i
+                let tempY = y + i
+                if (tempX > 14 || tempY > 14 || cheeks[tempY][tempX] !== flag) break
+                if (cheeks[tempY][tempX] === flag) num += 1
+            }
+            return num >= 5
+        }
+
+        function ru_ld(cheeks, x, y, flag) {
+            let num = 1
+            for (let i = 1; i < 5; i++) {
+                let tempX = x - i
+                let tempY = y + i
+                if (tempX < 0 || tempY > 14 || cheeks[tempY][tempX] !== flag) break
+                if (cheeks[tempY][tempX] === flag) num += 1
+            }
+            for (let i = 1; i < 5; i++) {
+                let tempX = x + i
+                let tempY = y - i
+                if (tempX > 14 || tempY < 0 || cheeks[tempY][tempX] !== flag) break
+                if (cheeks[tempY][tempX] === flag) num += 1
+            }
+            return num >= 5
         }
         play()
     </script>

@@ -28,10 +28,15 @@ class Compiler {
       })
     }
   }
-  compileText2(node, name, key, index) {
-    debugger
+  compileText2(node, name, key, index, val) {
     let regex = /\{\{(.+?)\}\}/
-
+    let res = regex.exec(val),
+        a = res[1],
+        arr = a.split('.'),
+        [b, c] = arr,
+        d = this.vm[key],
+        e = Array.isArray(d) ? d[index][c] : ''
+        node.textContent = e
   }
   compileElement(node) {
     ![...node.attributes].forEach(attr => {
@@ -67,6 +72,7 @@ class Compiler {
     const parentNode = node.parentNode
     const attrs = [...node.attributes]
     const tagName = node.tagName
+    const val = node.textContent
     parentNode.removeChild(node)
     const regex = /^for\s+([a-z]+)\s?[,]?\s?([a-z]+)?\s+in\s+([a-z]+)/
     const res = regex.exec(key)
@@ -80,10 +86,10 @@ class Compiler {
       attrs.forEach(item => {
         node.setAttribute(item.name, item.value)
       })
-      this.compileText2(node, a, c, i)
+      this.compileText2(node, a, c, i, val)
       fragment.appendChild(node)
     }
-    
+    parentNode.appendChild(fragment)
 
   }
   isDirective(attr) {

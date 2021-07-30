@@ -63,10 +63,20 @@
                 cheeks[cheeksY][cheeksX] = isBlack ? 1 : 2
 
                 ctx.beginPath()
-                ctx.arc(x, y, 20, 0, 2 * Math.PI)
+                ctx.arc(x, y, 18, 0, 2 * Math.PI)
                 ctx.fillStyle = isBlack ? 'black' : 'white'
                 ctx.fill()
                 ctx.closePath()
+                let gradient = ctx.createRadialGradient(x, y, 18, x + 2, y - 2, 0)
+                if(isBlack) {
+                    gradient.addColorStop(0,'#0a0a0a');
+                    gradient.addColorStop(1,'#636766');
+                } else {
+                    gradient.addColorStop(0,'#d1d1d1');
+                    gradient.addColorStop(1,'#f9f9f9');
+                }
+                ctx.fillStyle = gradient
+                ctx.fill()
                 setTimeout(() => {
                     if(gameOver) { 
                         const con = confirm(`${isBlack ? '黑棋' : '白棋'}赢了！是否重新开局？`)

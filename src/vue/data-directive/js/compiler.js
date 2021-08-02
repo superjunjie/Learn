@@ -24,7 +24,7 @@ class Compiler {
       let key = RegExp.$1.trim()
       node.textContent = val.replace(regex, this.vm[key])
       new Watcher(this.vm, key, newValue => {
-        node.nodeContext = newValue
+        node.textContent = newValue
       })
     }
   }
@@ -37,6 +37,9 @@ class Compiler {
         d = this.vm[key],
         e = Array.isArray(d) ? d[index][c] : ''
         node.textContent = e
+        new Watcher(this.vm, key, newValue => {
+          node.textContent = newValue
+        })
   }
   compileElement(node) {
     ![...node.attributes].forEach(attr => {

@@ -24,7 +24,7 @@ export default function patch(oldVnode, newVnode) {
         if(oldVnode.elm.parentNode) {
             let parentNode = oldVnode.elm.parentNode
             // 添加到真实的DOM上
-            parentNode.insertBefore(newVnode, oldVnode.elm)
+            parentNode.insertBefore(newNode, oldVnode.elm)
             // 删除旧的节点
             parentNode.removeChild(oldVnode.elm)
         }

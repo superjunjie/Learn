@@ -59,6 +59,41 @@ export default function updateChidren(parentElm, oldCh, newCh) {
             // 4. compare newStartVnode and oldEndVnode
             else if(sampleVnode(newStartVnode, oldEndVnode)) {
                 //将就后节点移动到就前节点之前
+                patchVnode(oldEndVnode, newStartVnode)
+                parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm)
+                newStartVnode = newCh[++newStartIndex]
+                oldEndVnode = oldCh[--oldEndIndex]
+            } else {
+                if(!keyMap) {
+                    keyMap = {}
+                    for(let i = oldStartVnode; i < oldEndIndex; i++) {
+                        const key = oldCh[i].data.key
+                        if(!key) keyMap[key] = i
+                    }
+                }
+
+                let idInOld = keyMap[newStartIndex.data] ? keyMap[newStartIndex.data.key] : undefined
+
+                if(idInOld) {
+                    let moveElm = oldCh[idInOld]
+                    patchVnode(moveElm, newStartVnode)
+                    oldCh[idInOld] = undefined
+                    parentElm.insertBefore(moveElm.elm, oldStartVnode.elm)
+                } else {
+                    parentElm.insertBefore(createElm(newStartVnode), oldStartVnode.elm)
+                }
+                newStartVnode = newCh[++newStartIndex]
+
+                if(newStartIndex <= newEndIndex) {
+                    let beforeFlag = newCh[newEndIndex + 1] ? newCh[newEndIndex + 1] : null
+                    for(let i = newStartIndex; i <= newEndIndex; i++) {
+                        parentElm.insertBefore(createElm(newCh[i]), beforeFlag)
+                    }
+                } else if(oldStartIndex <= oldEndIndex) {
+                    for(let i = oldStartIndex; i <= oldEndIndex; i++) {
+                        if(oldCh[i].elm) parentElm.removeChild(oldCh[i].elm)
+                    }
+                }
             }
         }
 

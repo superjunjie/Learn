@@ -66,13 +66,13 @@ export default function updateChidren(parentElm, oldCh, newCh) {
             } else {
                 if(!keyMap) {
                     keyMap = {}
-                    for(let i = oldStartVnode; i < oldEndIndex; i++) {
+                    for(let i = oldStartIndex; i < oldEndIndex; i++) {
                         const key = oldCh[i].data.key
-                        if(!key) keyMap[key] = i
+                        if(!!key) keyMap[key] = i
                     }
                 }
 
-                let idInOld = keyMap[newStartIndex.data] ? keyMap[newStartIndex.data.key] : undefined
+                let idInOld = keyMap[newStartVnode.data.key] ? keyMap[newStartVnode.data.key] : undefined
 
                 if(idInOld) {
                     let moveElm = oldCh[idInOld]
@@ -91,7 +91,7 @@ export default function updateChidren(parentElm, oldCh, newCh) {
                     }
                 } else if(oldStartIndex <= oldEndIndex) {
                     for(let i = oldStartIndex; i <= oldEndIndex; i++) {
-                        if(oldCh[i].elm) parentElm.removeChild(oldCh[i].elm)
+                        if(oldCh[i] && oldCh[i].elm) parentElm.removeChild(oldCh[i].elm)
                     }
                 }
             }

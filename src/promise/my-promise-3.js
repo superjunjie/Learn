@@ -11,6 +11,7 @@ function resolvePromise(promise2, x, resolve, reject) {
         let then = x.then
         try {
             if(typeof then === 'function') {
+                if(called) return
                 then.call(x, y => {
                     resolvePromise(promise2, y, resolve, reject)
                 }, r => {
@@ -153,31 +154,31 @@ Promise.all = (promises) => {
 
 Promise.race = function(promises) {
     return new Promise((resolve, reject) => {
-      let len = promises.length;
-      if(len === 0) return;
-      for(let i = 0; i < len; i++) {
-        Promise.resolve(promises[i]).then(data => {
-          resolve(data);
-          return;
-        }).catch(err => {
-          reject(err);
-          return;
-        })
-      }
+        let len = promises.length;
+        if(len === 0) return;
+        for(let i = 0; i < len; i++) {
+            Promise.resolve(promises[i]).then(data => {
+            resolve(data);
+            return;
+            }).catch(err => {
+            reject(err);
+            return;
+            })
+        }
     })
-  }
+}
 
-  Promise.prototype.finally = function(callback) {
+Promise.prototype.finally = function(callback) {
     this.then(value => {
-      return Promise.resolve(callback()).then(() => {
+    return Promise.resolve(callback()).then(() => {
         return value;
-      });
-    }, error => {
-      return Promise.resolve(callback()).then(() => {
-        throw error;
-      });
     });
-  }
+    }, error => {
+    return Promise.resolve(callback()).then(() => {
+        throw error;
+    });
+    });
+}
 
 // Test
 // const p = Promise.resolve('hello world')
@@ -186,29 +187,29 @@ Promise.race = function(promises) {
 // })
 
 // Test all
-const p1 = Promise.resolve('hello world-1')
-const p2 = Promise.reject('hello world-2')
-const p3 = Promise.resolve('hello world-3')
+// const p1 = Promise.resolve('hello world-1')
+// const p2 = Promise.reject('hello world-2')
+// const p3 = Promise.resolve('hello world-3')
 
-const pa = Promise.all([p1, p2, p3])
-pa.then(val => {
-    console.log(val)
-}, e => {
-    console.log(e)
-})
+// const pa = Promise.all([p1, p2, p3])
+// pa.then(val => {
+//     console.log(val)
+// }, e => {
+//     console.log(e)
+// })
 
 
 // Test race  ===>sucess
-// const p1 = Promise.resolve('hello world-1')
-// const p2 = Promise.resolve('hello world-2')
-// const p3 = Promise.resolve('hello world-3')
+const p1 = Promise.resolve('hello world-1')
+const p2 = Promise.resolve('hello world-2')
+const p3 = Promise.resolve('hello world-3')
 
-// const pa = Promise.race([p1, p2, p3])
-// pa.then(val => {
-//     console.log(val)
-// }).catch(e => {
-//     console.log(e)
-// })
+const pa = Promise.race([p1, p2, p3])
+pa.then(val => {
+    console.log(val)
+}).catch(e => {
+    console.log(e)
+})
 
 // Test finally
 // const promise = new Promise((resolve, reject) => {

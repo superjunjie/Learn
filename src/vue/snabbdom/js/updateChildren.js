@@ -1,6 +1,6 @@
 import createElm from "./createElm";
 import patchVnode from "./patchVnode";
-import sampleVnode from "./sample-vnode";
+import sameVndoe from "./sameVnode";
 
 /**
  * 
@@ -35,7 +35,7 @@ export default function updateChidren(parentElm, oldCh, newCh) {
             }
             // 忽视所有的undefined 我们来到这里 判断四种diff优化策略
             // 1. compare newStartVnode and oldStartVnode
-            else if(sampleVnode(newStartVnode, oldStartVnode)) {
+            else if(sameVndoe(newStartVnode, oldStartVnode)) {
                 // 调用 patchVnode 对比两个节点的 对象 文本 children
                 patchVnode(oldStartVnode, newStartVnode)
                 // 指针移动
@@ -43,13 +43,13 @@ export default function updateChidren(parentElm, oldCh, newCh) {
                 oldStartVnode = oldCh[++oldStartIndex]
             }
             // 2. compare newEndVnode and oldEndVnode
-            else if(sampleVnode(newEndVnode, oldEndVnode)) {
+            else if(sameVndoe(newEndVnode, oldEndVnode)) {
                 patchVnode(oldEndVnode, newEndVnode)
                 newEndVnode = newCh[--newStartIndex]
                 oldEndVnode = oldCh[--oldStartIndex]
             }
             // 3. compare newEndVnode and oldStartVnode 
-            else if(sampleVnode(newEndVnode, oldStartVnode)) {
+            else if(sameVndoe(newEndVnode, oldStartVnode)) {
                 patchVnode(oldStartVnode, newEndVnode)
                 // 将 旧前节点 移动到 旧后节点 之后
                 parentElm.insertBefore(oldStartVnode.elm, oldEndVnode.elm.nextSibling)
@@ -57,7 +57,7 @@ export default function updateChidren(parentElm, oldCh, newCh) {
                 oldStartVnode = oldCh[++oldStartIndex]
             }
             // 4. compare newStartVnode and oldEndVnode
-            else if(sampleVnode(newStartVnode, oldEndVnode)) {
+            else if(sameVndoe(newStartVnode, oldEndVnode)) {
                 //将就后节点移动到就前节点之前
                 patchVnode(oldEndVnode, newStartVnode)
                 parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm)

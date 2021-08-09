@@ -1,7 +1,7 @@
 // patch.js
 
 import createElm from "./createElm";
-import sampleVnode from "./sample-vnode";
+import sameVndoe from "./sample-vnode";
 import vnode from "./vnode";
 
 /**
@@ -14,8 +14,8 @@ export default function patch(oldVnode, newVnode) {
     if(!oldVnode.sel) {
         oldVnode = emptyNodeAt(oldVnode)
     }
-    // 2.判断oldVnode和newVnode是否为sampleVnode
-    if(sampleVnode(oldVnode, newVnode)) {
+    // 2.判断oldVnode和newVnode是否为sameVndoe
+    if(sameVndoe(oldVnode, newVnode)) {
         // 是同一个虚拟节点 调用我们写的 patchVnode.js 中的方法
     } else {
         // 不是同一个虚拟节点 直接暴力替换上新的节点

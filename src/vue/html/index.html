@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Demo</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul v-if="isShow" class="list" :class="bindCls">
+            <li v-for="item,index in items" :key="item.key">{{index}}: {{item.val}}</li>
+        </ul>
+        <button @click="handleClick">change</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                bindCls: 'on',
+                isShow: true,
+                items: [
+                    {
+                        key: 'A',
+                        val: 'A'
+                    },
+                    {
+                        key: 'B',
+                        val: 'B'
+                    },
+                    {
+                        key: 'C',
+                        val: 'C'
+                    }
+                ]
+            },
+            methods: {
+                handleClick() {
+                    this.items.reverse()
+                    this.items.push({key: 'D', val: 'D'})
+                }
+            }
+        })
+    </script>
+</body>
+</html>

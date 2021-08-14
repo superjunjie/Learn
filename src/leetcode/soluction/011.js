@@ -23,7 +23,7 @@ function maxArea2(nums) {
         if(area > maxArea) {
             maxArea = area
         }
-       if(nums[left] > nums[right]) {
+        if(nums[left] > nums[right]) {
             right--
         } else {
             left++

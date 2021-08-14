@@ -134,13 +134,13 @@ class Promise {
     }
     finally (f) {
         return this.then(value =>{
-          return Promise.resolve(f()).then(() => {
-            return value
-          })
-        },  err => {
-          return Promise.resolve(f()).then(() => {
-            throw err
-          })
+            return Promise.resolve(f()).then(() => {
+                return value
+            })
+            },  err => {
+            return Promise.resolve(f()).then(() => {
+                throw err
+            })
         })
     }
 }
@@ -194,32 +194,31 @@ Promise.race = function (promises) {
  * race 测试
  * 预测结果：输出 hello world-1
  * 实际结果：实际结果 hello world-3 hello world-3 hello world-3
- * 结论：forEach问题，还没想出来原因
  */
-// let count = 0
-// const p1 = Promise.resolve('hello world-1')
-// const p2 = Promise.resolve('hello world-2')
-// const p3 = Promise.resolve('hello world-3')
+let count = 0
+const p1 = Promise.resolve('hello world-1')
+const p2 = Promise.resolve('hello world-2')
+const p3 = Promise.resolve('hello world-3')
 
-// const pa = Promise.race([p1, p2, p3])
-// pa.then(val => {
-//     count++
-//     console.log(val + '---' + count)
-// }).catch(e => {
-//     console.log(e)
-// })
-
-// Test all
-const p1 = Promise.resolve('hello world')
-const p2 = Promise.reject('hello world')
-const p3 = Promise.resolve('hello world')
-
-const pa = Promise.all([p1, p2, p3])
+const pa = Promise.race([p1, p2, p3])
 pa.then(val => {
-    console.log(val)
+    count++
+    console.log(val + '---' + count)
 }).catch(e => {
     console.log(e)
 })
+
+// Test all
+// const p1 = Promise.resolve('hello world')
+// const p2 = Promise.reject('hello world')
+// const p3 = Promise.resolve('hello world')
+
+// const pa = Promise.all([p1, p2, p3])
+// pa.then(val => {
+//     console.log(val)
+// }).catch(e => {
+//     console.log(e)
+// })
 
 /**
  * 1.Promise中为什么要引入微任务？

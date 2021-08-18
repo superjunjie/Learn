@@ -28,7 +28,7 @@ class Compiler {
       })
     }
   }
-  compileText2(node, name, key, index, val) {
+  compileForExp(node, name, key, index, val) {
     let regex = /\{\{(.+?)\}\}/
     let res = regex.exec(val),
         a = res[1],
@@ -37,9 +37,6 @@ class Compiler {
         d = this.vm[key],
         e = Array.isArray(d) ? d[index][c] : ''
         node.textContent = e
-        new Watcher(this.vm, key, newValue => {
-          node.textContent = newValue
-        })
   }
   compileElement(node) {
     ![...node.attributes].forEach(attr => {
@@ -89,7 +86,7 @@ class Compiler {
       attrs.forEach(item => {
         node.setAttribute(item.name, item.value)
       })
-      this.compileText2(node, a, c, i, val)
+      this.compileForExp(node, a, c, i, val)
       fragment.appendChild(node)
     }
     parentNode.appendChild(fragment)

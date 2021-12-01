@@ -15,3 +15,7 @@ console.log(phoneNumber.replace(phoneNumberRegex, '-'))
 
 
 
+const str = '2021-10-09'
+
+const res = str.match(/-(\d{1,2})$/)
+console.log(res[1])

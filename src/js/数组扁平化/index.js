@@ -9,4 +9,18 @@ function flatter(arr) {
 }
 
 let result = flatter([1,2,3,[4,5,[6,7]],8])
-console.log(result)                                           
+console.log(result)
+
+/**
+ * 数组去重
+ */
+function getArrFn(arr) {
+    if(!arr.length) return
+    return arr.reduce((pre, cur) => 
+        pre.includes(cur) ? pre : [...pre, cur],
+        []
+    )
+}
+
+const res = getArrFn([1,1,1,3,3,3])
+console.log(res)

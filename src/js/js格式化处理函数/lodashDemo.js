@@ -1,3 +1,5 @@
 const _  = require('lodash')
 
-console.log(_.startsWith('aaabb', 'a'))
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+
+_.get(object, 'a[1].b.c')

@@ -24,7 +24,7 @@ function formatCurrency(val, config) {
   if(hasDecimal) {
     integer = valStr.split('.')[0]
     decimal = valDecimal.length > fmtDeliLen
-      ? valDecimal.substr(0, fmtDeliLen) 
+      ? valDecimal.substring(0, fmtDeliLen) 
       : valDecimal.padEnd(fmtDeliLen, '0')
   } else {
     integer =  roundMethod ? roundMethod.call(this, val) + '' : valStr.split('.')[0]

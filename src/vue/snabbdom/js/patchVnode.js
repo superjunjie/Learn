@@ -10,7 +10,7 @@ export default function patchVnode(oldVnode, newVnode) {
             oldVnode.elm.textContext = newVnode.text
         }
     } else {
-        // 3. 判断oldVnode有children，这个时候要使用 updateChidren更新
+        // 3. 判断oldVnode有children，这个时候要使用 updateChildren更新
         if(oldVnode.children) {
             
         } else {

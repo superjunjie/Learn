@@ -21,6 +21,23 @@ function getArrFn(arr) {
         []
     )
 }
-
-const res = getArrFn([1,1,1,3,3,3])
+const res = getArrFn([1,1,[1,3],3,3])
 console.log(res)
+
+
+const arr = [1,[[2,3],4],[5,6]]
+/**
+ * 
+ * @param {*} arr 数组
+ */
+function *flatByGenerator(arr) {
+    const length = arr.length
+    for(let i = 0; i < length; i++) {
+        if(Array.isArray(arr[i])) {
+            yield* flatByGenerator(arr[i])
+        } else {
+            yield arr[i]
+        }
+    }
+}
+console.log([...flatByGenerator(arr)])

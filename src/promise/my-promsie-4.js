@@ -55,7 +55,7 @@ class Promise {
                 value.then(resolve, reject)
                 return
             }
-            if(this.status = PENDING) {
+            if(this.status === PENDING) {
                 this.status = RESOLVED
                 this.value = value
                 this.onResolvedCallbacks.forEach(fn => fn())

@@ -22,19 +22,58 @@
 // it1.next(111)
 // it2.next(222)
 
-const arr = [1,[[2,3],4],[5,6]]
+// const arr = [1,[[2,3],4],[5,6]]
 
-function *flat(arr) {
-  const length = arr.length
-  for(let i = 0; i < length; i++) {
-    if(Array.isArray(arr[i])) {
-      yield* flat(arr[i])
-    } else {
-      yield arr[i]
-    }
+// function *flat(arr) {
+//   const length = arr.length
+//   for(let i = 0; i < length; i++) {
+//     if(Array.isArray(arr[i])) {
+//       yield* flat(arr[i])
+//     } else {
+//       yield arr[i]
+//     }
+//   }
+// }
+
+// for(let i of flat(arr)) {
+//   console.log(i)
+// }
+
+var a = 1
+var b = 2
+
+function *foo() {
+  a++
+  yield
+  b = b * a
+  a = (yield b) + 3
+}
+
+function *bar() {
+  b--
+  yield
+  a = (yield 8) + b
+  b = a * (yield 2)
+}
+
+function step(gen) {
+  var it = gen()
+  var last
+  return function() {
+    last = it.next(last).value
   }
 }
 
-for(let i of flat(arr)) {
-  console.log(i)
-}
+var s1 = step(foo)
+var s2 = step(bar)
+
+s1()
+s1()
+s1()
+
+s2()
+s2()
+s2()
+s2()
+
+console.log(a,b)

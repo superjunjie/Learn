@@ -4,17 +4,17 @@ class LRUCache {
         this.secretKey = new Map()
         this.capacity = capacity
     }
-     get(key) {
-         if(this.secretKey.has(key)) {
-             let tempValue = this.secretKey.get(key)
-             this.secretKey.delete(key)
-             this.secretKey.set(key, tempValue)
-             return tempValue
-         } else {
-             return -1
-         }
-     }
-     put(key, value) {
+    get(key) {
+        if(this.secretKey.has(key)) {
+            let tempValue = this.secretKey.get(key)
+            this.secretKey.delete(key)
+            this.secretKey.set(key, tempValue)
+            return tempValue
+        } else {
+            return -1
+        }
+    }
+    put(key, value) {
         // key存在，仅修改值
         if(this.secretKey.has(key)) {
             this.secretKey.delete(key)
@@ -27,7 +27,7 @@ class LRUCache {
             this.secretKey.set(key, value)
             this.secretKey.delete(this.secretKey.keys().next().value)
         }
-     }
+    }
 }
 
 let cache = new LRUCache(2);

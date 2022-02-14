@@ -9,5 +9,5 @@ function removeElement(nums, val) {
     return slow
 }
 
-let nums = [2,3,4,3]
+let nums = [3,2,2,3,3,4]
 console.log(removeElement(nums, 3))

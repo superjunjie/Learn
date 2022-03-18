@@ -1,42 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Three Demo</title>
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
-</head>
+<meta charset="utf-8">
+<title>Transform Transitions</title>
+<style>
+
+body {
+  margin: 0;
+}
+
+rect {
+  stroke: #fff;
+  stroke-width: .1px;
+}
+
+</style>
 <body>
-  <script src="./three.js"></script>
-  <script>
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-    const renderer = new THREE.WebGLRenderer()
-    renderer.setSize( window.innerWidth, window.innerHeight )
-    document.body.appendChild( renderer.domElement )
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
 
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } )
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube )
+var w = 960,
+    h = 500,
+    z = 20,
+    x = w / z,
+    y = h / z;
 
-    camera.position.z = 5
+var svg = d3.select("body").append("svg")
+    .attr("width", w)
+    .attr("height", h);
 
-    const animate = function () {
-      requestAnimationFrame( animate )
+svg.selectAll("rect")
+    .data(d3.range(x * y))
+  .enter().append("rect")
+    .attr("transform", translate)
+    .attr("width", z)
+    .attr("height", z)
+    .style("fill", function(d) { return d3.hsl(d % x / x * 360, 1, Math.floor(d / x) / y); })
+    .on("mouseover", mouseover);
 
-      cube.rotation.x += 0.01
-      cube.rotation.y += 0.01
+function translate(d) {
+  return "translate(" + (d % x) * z + "," + Math.floor(d / x) * z + ")";
+}
 
-      renderer.render( scene, camera )
-    }
+function mouseover(d) {
+  this.parentNode.appendChild(this);
 
-    animate();
-  </script>
-</body>
-</html>
+  d3.select(this)
+      .style("pointer-events", "none")
+    .transition()
+      .duration(750)
+      .attr("transform", "translate(480,480)scale(23)rotate(180)")
+    .transition()
+      .delay(1500)
+      .attr("transform", "translate(240,240)scale(0)")
+      .style("fill-opacity", 0)
+      .remove();
+}
+
+</script>

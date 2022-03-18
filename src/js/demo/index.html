@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let observer = new MutationObserver(records => console.log(records))
+    let subtreeRoot = document.createElement('div'),
+        subtreeLeaf = document.createElement('span')
+    document.body.appendChild(subtreeRoot)
+    subtreeRoot.appendChild(subtreeLeaf)
+    observer.observe(subtreeRoot, { attributes: true, subtree: true})
+    document.body.insertBefore(subtreeLeaf, subtreeRoot)
+    subtreeLeaf.setAttribute('foo', 'bar')
+  </script>
+</body>
+</html>

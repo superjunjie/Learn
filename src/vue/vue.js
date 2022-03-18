@@ -1526,7 +1526,6 @@
     {
       checkComponents(child);
     }
-
     if (typeof child === 'function') {
       child = child.options;
     }
@@ -4842,6 +4841,7 @@
   function createComputedGetter (key) {
     return function computedGetter () {
       var watcher = this._computedWatchers && this._computedWatchers[key];
+      debugger
       if (watcher) {
         if (watcher.dirty) {
           watcher.evaluate();
@@ -5029,6 +5029,7 @@
   }
 
   function initInternalComponent (vm, options) {
+    debugger
     var opts = vm.$options = Object.create(vm.constructor.options);
     // doing this because it's faster than dynamic enumeration.
     var parentVnode = options._parentVnode;

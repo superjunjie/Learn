@@ -25,5 +25,3 @@ var lengthOfLongestSubstring = function(s) {
   }
   return count
 }
-
-console.log(lengthOfLongestSubstring('abcdbcedf'))

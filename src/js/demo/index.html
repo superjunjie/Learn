@@ -5,17 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .parent {
+      width: 600px;
+      height: 600px;
+      background-color: blue;
+    }
+    .child {
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+  </style>
 </head>
 <body>
-  <script>
-    let observer = new MutationObserver(records => console.log(records))
-    let subtreeRoot = document.createElement('div'),
-        subtreeLeaf = document.createElement('span')
-    document.body.appendChild(subtreeRoot)
-    subtreeRoot.appendChild(subtreeLeaf)
-    observer.observe(subtreeRoot, { attributes: true, subtree: true})
-    document.body.insertBefore(subtreeLeaf, subtreeRoot)
-    subtreeLeaf.setAttribute('foo', 'bar')
-  </script>
+  <div class="parent">
+    <div class="child"></div>
+  </div>
 </body>
 </html>

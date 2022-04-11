@@ -5,9 +5,15 @@
 function singleNumber(nums) {
     let res = 0
     for(let i = 0; i < nums.length; i++) {
-       res ^= nums[i]
+        res ^= nums[i]
     }
     return res
 }
 
-console.log(singleNumber([1,1,2,2,4]))
+function singleNumber2(nums) {
+    return nums.reduce((cur, pre) => cur^pre)
+}
+
+
+console.log(singleNumber2([1,1,2,2,4]))
+

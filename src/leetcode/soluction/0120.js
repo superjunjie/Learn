@@ -19,6 +19,6 @@ let triangle = [
     [2],
     [3,4],
     [6,5,7],
-    [4,1,8,3]
+    [4,2,8,1]
 ]
 console.log(minimumTotal(triangle))

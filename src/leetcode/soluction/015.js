@@ -7,7 +7,7 @@ function threeSum(nums) {
         for (let j = i + 1; j < nums.length - 1; j++) {
             for (let k = i + 2; k < nums.length; k++) {
                 if (nums[i] + nums[j] + nums[k] === 0) {
-                    res.push([i, j, k])
+                    res.push([nums[i], nums[j], nums[k]])
                 }
             }
         }
@@ -82,4 +82,4 @@ function threeSum3(nums) {
     }
     return res
 }
-console.log(threeSum3([0,1,-1]))
+console.log(threeSum([-2,1,1]))

@@ -1,16 +1,17 @@
-// to sum
-// example input : list = [1,2,3,4] target = 7  output: [2,3]
-
-function twoSum(nums, target) {
-    let map = new Map()
-    for(let i = 0; i < nums.length; i++) {
-        if(map.has(target - nums[i])) {
-            return [map.get(target - nums[i]), i]
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const map = new Map()
+    nums.forEach((value, index) => {
+        if(map.has(target - value)) {
+            return [map.get(target - value), index]
+        } else {
+            map.set(value, index)
         }
-        else {
-            map.set(nums[i], i)
-        }
-    }
+    })
     return []
 }
 

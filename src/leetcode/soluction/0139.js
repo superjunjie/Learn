@@ -47,3 +47,7 @@ const wordBreakBFS = (s, wordDict) => {
     }
     return false
 }
+
+
+const res = wordBreakDFS('leetCode', ['leet', 'Code'])
+console.log(res)

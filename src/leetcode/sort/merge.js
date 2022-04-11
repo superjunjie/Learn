@@ -24,6 +24,6 @@ function merge(left, right) {
     return result
 }
 
-let nums = [4,5,6,1,2,3]
+let nums = [4,5,6,1,1,2,3]
 console.log(mergeSort(nums))
 

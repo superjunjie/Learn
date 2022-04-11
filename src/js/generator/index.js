@@ -67,13 +67,11 @@ function step(gen) {
 var s1 = step(foo)
 var s2 = step(bar)
 
-s1()
-s1()
-s1()
+s1() // a = 2, b = 2
+s1() // a = 2, b = 4
+s1() // a = 7, b = 4
 
-s2()
-s2()
-s2()
-s2()
-
-console.log(a,b)
+s2() // a = 7, b = 3
+s2() // a = 7,, b = 3
+s2() // a = 11, b = 3
+s2() // a = 11, b = 22

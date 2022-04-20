@@ -87,22 +87,30 @@ function effect(fn, options) {
     return effectFn
 }
 
-const userInfo = reactive({ name: 'junjie', age: 18 })
-effect(() => {
-    console.log(userInfo.age)
-}, {
-    scheduler(fn) {
-        jobQueue.add(fn)
-        flushJob()
+function computed(getter) {
+    let value
+    let dirty = true
+    const effectFn = effect(getter, {
+        lazy: true,
+        scheduler() {
+            dirty = true
+        }
+    })
+    const obj = {
+        get value() {
+            if (dirty) {
+                value = effectFn()
+                dirty = false
+            }
+            return value
+        }
     }
-})
+    return obj
+}
 
-userInfo.age++
-userInfo.age++
-
-const effectFn = effect(() => {
-    return userInfo.name + userInfo.age
-}, {
-    lazy: true
-})
-console.log(effectFn())
+const obj = reactive({ foo: 10, bar: 20 })
+const sumRes = computed(() => obj.foo + obj.bar)
+console.log(sumRes.value)
+obj.foo++
+console.log(sumRes.value)
+console.log(sumRes.value)

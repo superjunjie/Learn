@@ -51,3 +51,17 @@ var isValidBST = function(root) {
 var recoverTree = function(root) {
 
 };
+
+
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ * @detail https://leetcode-cn.com/problems/same-tree/
+ */
+var isSameTree = function(p, q) {
+  if(p === null && q === null) return true
+  if(p === null || q === null) return false
+  if(p.val !== q.val) return false
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+};

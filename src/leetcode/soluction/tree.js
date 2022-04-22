@@ -84,5 +84,14 @@ function postOrderTraversal(root) {
   return list
 }
 
-const root = generateBinarySearchTree([1,2,3,4,5,6,7,8])
-console.log(postOrderTraversal(root))
+const t1 = generateBinarySearchTree([1,2])
+const t2 = generateBinarySearchTree([1,2])
+
+function isSameTree(p, q) {
+  if(p === null && q === null) return true
+  if(p === null || q === null) return false
+  if(p.val !== q.val) return false
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+}
+
+console.log(isSameTree(t1, t2))

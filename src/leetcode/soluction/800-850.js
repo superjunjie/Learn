@@ -16,3 +16,22 @@ var toGoatLatin = function(sentence) {
 }
 
 console.log(toGoatLatin('I speak Goat Latin'))
+
+/**
+ * @param {number} n
+ * @return {number}
+ * @detail https://leetcode-cn.com/problems/binary-gap/
+ */
+var binaryGap = function(n) {
+  let ans = 0
+  for(let i = 31, j = -1; i >=0; i--) {
+    if(((n >> i) & 1) === 1) {
+      if(j !== -1) ans = Math.max(ans, j - i)
+      j = i
+    }
+  }
+  return ans
+};
+
+
+console.log(binaryGap(22))

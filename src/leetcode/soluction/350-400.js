@@ -1,3 +1,5 @@
+import { matches } from "lodash";
+
 /**
  * @param {string} input
  * @return {number}
@@ -38,5 +40,55 @@ var maxRotateFunction = function(nums) {
   return res
 };
 
+// console.log(maxRotateFunction([4,3,2,6]))
 
-console.log(maxRotateFunction([4,3,2,6]))
+
+/**
+ * @param {number[]} nums
+ * @detail https://leetcode-cn.com/problems/random-pick-index/
+ */
+var Solution = function(nums) {
+  this.map = new Map()
+  for(let i = 0; i < nums.length; i++) {
+    if(this.map.has(nums[i])) {
+      this.map.set(nums[i], [i].concat(this.map.get(nums[i])))
+    } else {
+      this.map.set(nums[i], [i])
+    }
+  }
+};
+
+/** 
+ * @param {number} target
+ * @return {number}
+ */
+Solution.prototype.pick = function(target) {
+  if(this.map.has(target)) {
+    const list = this.map.get(target)
+    return list[Math.floor(Math.random() * list.length)]
+  }
+};
+
+/**
+ * @param {number[]} nums
+ * @detail https://leetcode-cn.com/problems/random-pick-index/
+ */
+var Solution = function(nums) {
+  this.nums = nums
+};
+
+/** 
+ * @param {number} target
+ * @return {number}
+ */
+Solution.prototype.pick = function(target) {
+  let ans = 0
+  for(let i = 0, cnt = 0; i < this.nums.length; i++) {
+    if(this.nums[i] === target) {
+      ++cnt
+      if(Math.floor(Math.random() * cnt) === 0) {
+        ans = i
+      }
+    }
+  }
+};

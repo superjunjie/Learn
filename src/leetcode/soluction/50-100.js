@@ -21,7 +21,7 @@ var inorderTraversal = function(root) {
   return list
 };
 
-const root = generateBinarySearchTree([1,null,2,3])
+const root = generateBinarySearchTree([5,4,8,11,null,13,4,7,2,null,null,null,1])
 console.log(root)
 console.log(inorderTraversal(root))
 
@@ -64,4 +64,38 @@ var isSameTree = function(p, q) {
   if(p === null || q === null) return false
   if(p.val !== q.val) return false
   return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+};
+
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ * @detail https://leetcode-cn.com/problems/path-sum/
+ */
+var hasPathSum = function(root, targetSum) {
+  let stack = []
+  let lastView = root
+  let cur = root
+  let ans = false
+  while (cur !== null || stack.length !== 0) {
+    while (cur !== null) {
+      targetSum -= cur.val
+      if(targetSum === 0 && cur.left === null && cur.right === null) {
+        ans = true
+        break
+      } 
+      stack.push(cur)
+      cur = cur.left
+    }
+    cur = stack[stack.length - 1]
+    if(cur.right === null || cur.right === lastView) {
+      targetSum += cur.val
+      stack.pop()
+      lastView = cur
+      cur = null
+    } else {
+      cur = cur.right
+    }
+  }
+  return ans
 };

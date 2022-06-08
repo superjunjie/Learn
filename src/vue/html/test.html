@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue中相同key引发的更新错误</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in data" :key="item.key">{{item.value}}</li>
+    </ul>
+    <button @click="changeData">safe to change data here</button>
+    <button @click="changeDataWillCauseError">change data which will raise error</button>
+    <h2>you should refresh page after clicking one of buttons</h2>
+  </div>
+  <script>
+    var compA = Vue.extend({
+      props: ['text'],
+      template: '<li>{{text}}</li>'
+    });
+    new Vue({
+      el: '#app',
+      components: {
+        'comp-a': compA
+      },
+      data: function() {
+        return {
+          data: [{
+            key: 'a',
+            value: 'first'
+          }, {
+            key: 'b',
+            value: 'second'
+          }, {
+            key: 'c',
+            value: 'third'
+          }]
+        }
+      },
+      methods: {
+        changeData: function() {
+          this.data =  [{
+            key: 'b',
+            value: '1'
+          }, {
+            key: 'a',
+            value: '2'
+          }, {
+            key: 'c',
+            value: '3'
+          }, {
+            key: 'b',
+            value: '3'
+          }];
+        },
+        changeDataWillCauseError: function() {
+          this.data =  [{
+            key: 'b',
+            value: '1'
+          }, {
+            key: 'x',
+            value: '2'
+          }, {
+            key: 'd',
+            value: '3'
+          }, {
+            key: 'b',
+            value: '3'
+          }];
+        }
+      }
+    })
+  </script>  
+</body>
+</html>

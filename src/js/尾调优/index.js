@@ -12,7 +12,7 @@
  * @returns 计算n!递归调用
  */
 function factorial(n) {
-  if(n < 2) return n
+  if (n < 2) return n
   let res = n * factorial(n - 1)
   return res
 }
@@ -24,7 +24,7 @@ function factorial(n) {
  */
 function factorial2(n) {
   function fact(n, res) {
-    if(n < 2) return res
+    if (n < 2) return res
     return fact(n - 1, n * res)
   }
   return fact(n, 1)
@@ -37,7 +37,7 @@ function factorial2(n) {
  * @description 斐波那契数列
  */
 function fibonacci(n) {
-  if(n === 1 || n === 0) return n
+  if (n === 1 || n === 0) return n
   return fibonacci(n - 1) + fibonacci(n - 2)
 }
 
@@ -50,10 +50,10 @@ function fibonacci(n) {
  */
 function fibonacci2(n) {
   function inner(n, current, next) {
-    if(n === 1) return next
-    if(n === 0) return 0
+    if (n === 1) return next
+    if (n === 0) return 0
     return inner(n - 1, next, current + next)
   }
   return inner(n, 0, 1)
 }
-console.log(fibonacci2(10))
+console.log(fibonacci2(81))

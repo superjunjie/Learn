@@ -1,5 +1,5 @@
 function quick_sort(nums, low, high) {
-    if(low < high) {
+    if (low < high) {
         let pivot = high
         let partitionIndex = partition(nums, pivot, low, high)
         quick_sort(nums, low, partitionIndex - 1 < low ? low : partitionIndex - 1)
@@ -10,8 +10,8 @@ function quick_sort(nums, low, high) {
 function partition(nums, pivot, low, high) {
     let pivotVal = nums[pivot]
     let startIndex = low
-    for(let i = low; i < high; i++) {
-        if(nums[i] < pivotVal) {
+    for (let i = low; i < high; i++) {
+        if (nums[i] < pivotVal) {
             [nums[i], nums[startIndex]] = [nums[startIndex], nums[i]]
             startIndex++
         }
@@ -20,10 +20,10 @@ function partition(nums, pivot, low, high) {
     return startIndex
 }
 function quickSort(nums) {
-    if(nums.length <= 1) return nums
+    if (nums.length <= 1) return nums
     quick_sort(nums, 0, nums.length - 1)
 }
 
-let nums = [1,1,1]
+let nums = [3, 2, 1]
 quickSort(nums)
 console.log(nums)

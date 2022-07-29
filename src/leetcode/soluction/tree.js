@@ -185,6 +185,20 @@ function reverseEdge(node) {
   return pre
 }
 
-const root = generateBinarySearchTree([1,0,1,0,1,0,1,0,1])
-const list = sumRootToLeaf(root)
-console.log(list)
+var maxPathSum = function(root) {
+  let max = -Number.MAX_VALUE
+  const dfs = node => {
+      if (node === null) return 0
+      node.val += dfs(node.left)
+      node.val += dfs(node.right)
+      max = Math.max(max, node.val)
+      return node.val
+  }
+  dfs(root)
+  return max
+}
+
+
+const root = generateBinarySearchTree([1,2,3])
+const ans = maxPathSum(root)
+console.log(ans)

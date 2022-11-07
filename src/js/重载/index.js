@@ -43,5 +43,5 @@ addMethods(people, 'find', find2)
 
 
 console.log(people.find())
-console.log(people.find('A'))
 console.log(people.find('A B'))
+console.log(people.find('A', 'B'))

@@ -15,7 +15,7 @@ function generateBinarySearchTree(arr) {
   while (queue.length > 0) {
     for (let i = 0, size = queue.length; i < size; i++) {
       cur = queue.pop()
-      cur.left = arr[n + 1] ? new TreeNode(arr[n + 1]) : null
+      cur.left = arr[n + 1] != null ? new TreeNode(arr[n + 1]) : null
       cur.left && queue.unshift(cur.left)
       n++
 
@@ -114,5 +114,120 @@ var pathSum = function (root, target) {
   return list
 };
 
-const root = generateBinarySearchTree([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1])
-console.log(pathSum(root, 22))
+function morrisPre(head) {
+  if (head === null) return head
+  let cur = head
+  let mostRight = null
+  const list = []
+  while (cur !== null) {
+    mostRight = cur.left
+    if (mostRight !== null) {
+      while (mostRight.right && mostRight.right !== cur) {
+        mostRight = mostRight.right
+      }
+      if (mostRight.right === null) {
+        mostRight.right = cur
+        list.push(cur.val)
+        cur = cur.left
+        continue
+      } else {
+        mostRight.right = null
+      }
+    } else {
+      list.push(cur.val)
+    }
+    cur = cur.right
+  }
+  return list
+}
+
+function morrisIn(head) {
+  if (head === null) return null
+  let cur = head
+  let mostRight = null
+  const list = []
+  while (cur !== null) {
+    mostRight = cur.left
+    if (mostRight !== null) {
+      while (mostRight.right && mostRight.right !== cur) {
+        mostRight = mostRight.right
+      }
+      if (mostRight.right === null) {
+        mostRight.right = cur
+        cur = cur.left
+        continue
+      } else {
+        mostRight.right = null
+      }
+    }
+    list.push(cur.val)
+    cur = cur.right
+  }
+  return list
+}
+
+function morrisPos(head) {
+  if (head === null) return head
+  let cur = head
+  let mostRight
+  const list = []
+  while (cur !== null) {
+    mostRight = cur.left
+    if (mostRight !== null) {
+      while (mostRight.right !== null && mostRight.right !== cur) {
+        mostRight = mostRight.right
+      }
+      if (mostRight.right === null) {
+        mostRight.right = cur
+        cur = cur.left
+        continue
+      } else {
+        mostRight.right = null
+        printEdge(cur.left, list)
+      }
+    }
+    cur = cur.right
+  }
+  printEdge(head, list)
+  return list
+}
+
+function printEdge(node, list) {
+  const tail = reverseEdge(node)
+  let cur = tail
+  while (cur !== null) {
+    list.push(cur.val)
+    cur = cur.right
+  }
+  reverseEdge(tail)
+}
+
+function reverseEdge(node) {
+  let pre = null
+  let next = null
+  while (node != null) {
+    next = node.right
+    node.right = pre
+    pre = node
+    node = next
+  }
+  return pre
+}
+
+var maxPathSum = function (root) {
+  let max = -Number.MAX_VALUE
+  const dfs = node => {
+    if (node === null) return 0
+    node.val += dfs(node.left)
+    node.val += dfs(node.right)
+    max = Math.max(max, node.val)
+    return node.val
+  }
+  dfs(root)
+  return max
+}
+
+
+const root = generateBinarySearchTree([1, 2, 3])
+const ans = maxPathSum(root)
+console.log(ans)
